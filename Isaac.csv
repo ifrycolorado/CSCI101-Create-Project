@@ -1,0 +1,35 @@
+Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection
+2021-11-29,Run,0.32,atting,None,"[20, 30]",40,2,2,0,0,None
+2021-11-29,Run,0.32,atting,None,30,40,2,2,0,0,None
+2021-11-29,Run,0.35,Retry,None,"[10, 20]",30,2,2,0,0,Nothing
+2021-11-29,Run,0.35,Retry,None,20,30,2,2,0,0,Nothing
+2021-11-29,Run,0.41,Retry,None,"[100, 200]",300,2,2,0,0,Na
+2021-11-29,Run,0.41,Retry,None,200,300,2,2,0,0,Na
+2021-11-29,Activity,57.61,Retry,Nada,"[100, 200]",300,4,4,0,0,Reflect
+2021-11-29,Activity,57.61,Retry,Nada,"[100, 200]",300,4,4,0,0,Reflect
+2021-11-29,Run,0.53,UUU,None,"[10, 20]",30,2,2,0,0,2
+2021-11-29,Run,0.53,UUU,None,20,30,2,2,0,0,2
+2021-11-29,Run,1.15,UUU,None,"[90, 110]",10101,2,2,0,0,None
+2021-11-29,Run,1.15,UUU,None,110,10101,2,2,0,0,None
+2021-11-29,Activity,29.77,UUU,WWWW,"[90, 110]",10101,4,4,0,0,Reflect
+2021-11-29,Activity,29.77,UUU,WWWW,"[90, 110]",10101,4,4,0,0,Reflect
+2021-11-29,Run,0.52,Last time,None,"[10, 20]",30,2,2,0,0,None
+2021-11-29,Run,0.52,Last time,None,20,30,2,2,0,0,None
+2021-11-29,Run,0.75,Last time,None,"[69, 71]",90,2,2,0,0,Nothing
+2021-11-29,Run,0.75,Last time,None,71,90,2,2,0,0,Nothing
+2021-11-29,Activity,35.35,Last time,This please work,"[[10, 20], [69, 71]]","[30, 90]",4,4,0,0,Reflection
+2021-11-29,Activity,35.35,Last time,This please work,"[69, 71]",90,4,4,0,0,Reflection
+2021-11-29,Run,1.33,Print test,None,"[10, 20]",30,2,2,0,0,GHA
+2021-11-29,Run,1.33,Print test,None,20,30,2,2,0,0,GHA
+2021-11-29,Run,0.51,input,None,"[10, 20]",30,2,2,0,0,Three
+2021-11-29,Run,0.51,input,None,20,30,2,2,0,0,Three
+2021-11-29,Run,1.61,Input,None,"[10, 20]",30,4,4,0,0,2
+2021-11-29,Run,1.61,Input,None,20,30,4,4,0,0,2
+2021-11-29,Run,1.25,YAY,None,"[10, 20]",30,2,2,0,0,Thinks
+2021-11-29,Activity,1087.3,YAY,NODO,"[[10, 20]]",[30],2,2,0,0,This is a reflection
+2021-11-29,Run,0.94,In CS,None,"[90, 100]",50,2,2,0,0,None
+2021-11-29,Activity,59.25,In CS,Unnoticed,"[[10, 20], [90, 100]]","[30, 50]",4,4,0,0,Reflections
+2021-11-29,Activity,59.25,In CS,Unnoticed,"[90, 100]",50,4,4,0,0,Reflections
+2021-11-29,Run,0.97,CSCI,None,"[10, 20]",30,2,2,0,0,Thirty
+2021-11-29,Run,1.37,Ready,None,"[10, 20]",30,2,2,0,0,Nada
+2021-11-29,Activity,59.29,Ready,Not,"[[10, 20]]",[30],2,2,0,0,HA
