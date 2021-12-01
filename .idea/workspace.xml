@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7ff7626-698b-4c5d-9143-0fccc7ee5a53" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/CSV Reading Backwards.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data Retrieval.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Activity and Run Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Activity and Run Input.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isaac.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Isaac.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Pandas Stuff.py" beforeDir="false" afterPath="$PROJECT_DIR$/Pandas Stuff.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +39,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected="Python.Data Retrieval">
+  <component name="RunManager" selected="Python.Activity and Run Input">
     <configuration name="Activity and Run Input" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CSCI101-Create-Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,8 +108,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Data Retrieval" />
         <item itemvalue="Python.Activity and Run Input" />
+        <item itemvalue="Python.Data Retrieval" />
         <item itemvalue="Python.CSV Reading Backwards" />
       </list>
     </recent_temporary>
@@ -127,7 +124,7 @@
       <updated>1638232048530</updated>
       <workItem from="1638232054070" duration="6000" />
       <workItem from="1638247901038" duration="5081000" />
-      <workItem from="1638291694791" duration="19230000" />
+      <workItem from="1638291694791" duration="21076000" />
     </task>
     <servers />
   </component>
@@ -147,8 +144,8 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638334497524" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638398936055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$CSV_Reading_Backwards.coverage" NAME="CSV Reading Backwards Coverage Results" MODIFIED="1638291400668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Data_Retrieval.coverage" NAME="Data Retrieval Coverage Results" MODIFIED="1638334501543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Data_Retrieval.coverage" NAME="Data Retrieval Coverage Results" MODIFIED="1638397681873" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

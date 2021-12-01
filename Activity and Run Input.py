@@ -2,7 +2,7 @@
 
 # Reference: Documentation on adding lists to DataFrames https://stackoverflow.com/questions/26483254/python-pandas-insert-list-into-a-cell
 #FIXME .csv must be alterable via user_profile
-#FIXME Blank space MUST exist after last entry in csv, otherwise new entry appends to end of last one
+#FIXME Take Isaac.csv out of every call and make room for new user_profile
 
 import datetime
 import time
@@ -41,49 +41,102 @@ Run_Dict = {
     'Session': 0
 }
 
+Blank_List = ['Date','Type','Time','Piece','Goals','Sections','Tempos',
+              'AttemptsTotal','SuccessfulAttempts','UnsuccessfulAttempts',
+              'NeutralAttempts','Reflection','Session']
+
+#FIXME Maybe some art?
+print("Welcome to Pracktice, the music practicing app!")
+
 def main_menu():
+    user_profile = input("What user profile are we using? (Case sensitive)> ")
 
-    #FIXME Maybe some art?
-    print("Welcome to Pracktice, the music practicing app!")
-    # create
-    global user_csv
+    global creation_value
 
-    user_profile = input("What user profile are we using?> ")
-    user_csv = str(user_profile) + ".csv"
+    try:
+        global dfp
+        global user_csv
 
+        user_csv = str(user_profile) + ".csv"
+
+        data = pd.read_csv(user_csv)
+        data.head()
+        dfp = pd.DataFrame(data)
+        print(f"Welcome back {user_profile}!")
+        creation_value = False
+        main_menu_valid(creation_value)
+
+    except:
+        print("User profile does not exist. Would you like to create a new profile, or retry account input?\n[1] New Profile\n[2] Retry")
+        user_choice = input("Choice> ")
+        if user_choice == "1":
+            account_creation()
+        elif user_choice == "2":
+            main_menu()
+
+def account_creation():
+
+    # set a variable for branches if this is a new account
+    creation_value = True
+
+    print("What would you like this account to be named?")
+    account_name = input("Name> ")
+    print()
+
+    # Create new account
+    account_csv = account_name + ".csv"
+    with open(account_csv, "w") as creating_file:
+        creating_writer = csv.writer(creating_file)
+        creating_writer.writerow(Blank_List)
+    print(f"Welcome to Pracktice, {account_name}!")
+
+    # assign new dfp dataframe
     global dfp
-
     data = pd.read_csv(user_csv)
     data.head()
     dfp = pd.DataFrame(data)
 
+    global user_csv
 
-    print(f"Welcome back {user_profile}!")
+    user_csv = str(user_profile) + ".csv"
 
-    print("[1] Start a practice session")
-    print("[2] Analyze data")
-    user_main_menu = int(input("Choice> "))
-    if user_main_menu == 1:
-        session_start()
-    elif user_main_menu == 2:
-        return 0
+    main_menu_valid(creation_value)
 
-def session_start():
+def main_menu_valid(value):
 
-    # FINDS LENGTH OF SESSIONS
-    Activity_Dict['Session'] = int(determine_last_session(user_csv) + 1)
-    Run_Dict['Session'] = int(determine_last_session(user_csv) + 1)
+    if value == False:
+        print("[1] Start a practice session")
+        print("[2] Analyze data")
+        user_main_menu = int(input("Choice> "))
+        if user_main_menu == 1:
+            session_start(value)
+        elif user_main_menu == 2:
+            return 0
 
-    print("Would you like to see a report of your last session?\n[1] Yes\n[2] No")
-    choice = input("Choice> ")
-    if choice == "1":
-        generate_report_last_session()
+    if value == True:
+        print("[1] Start a practice session")
+        user_main_menu = int(input("Choice> "))
+        if user_main_menu == 1:
+            session_start(value)
+
+def session_start(value):
+
+    if value == False:
+        # FINDS LENGTH OF SESSIONS
+        Activity_Dict['Session'] = int(determine_last_session(user_csv) + 1)
+        Run_Dict['Session'] = int(determine_last_session(user_csv) + 1)
+
+        print("Would you like to see a report of your last session?\n[1] Yes\n[2] No")
+        choice = input("Choice> ")
+        if choice == "1":
+            generate_report_last_session()
+            activity_start()
+        elif choice == "2":
+            activity_start()
+        else:
+            print("Please select either 1 or 2")
+    elif value == True:
         activity_start()
-    elif choice == "2":
-        activity_start()
-    else:
-        print("Please select either 1 or 2")
-
 
 def activity_start():
 
