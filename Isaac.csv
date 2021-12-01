@@ -1,35 +1,36 @@
-Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection
-2021-11-29,Run,0.32,atting,None,"[20, 30]",40,2,2,0,0,None
-2021-11-29,Run,0.32,atting,None,30,40,2,2,0,0,None
-2021-11-29,Run,0.35,Retry,None,"[10, 20]",30,2,2,0,0,Nothing
-2021-11-29,Run,0.35,Retry,None,20,30,2,2,0,0,Nothing
-2021-11-29,Run,0.41,Retry,None,"[100, 200]",300,2,2,0,0,Na
-2021-11-29,Run,0.41,Retry,None,200,300,2,2,0,0,Na
-2021-11-29,Activity,57.61,Retry,Nada,"[100, 200]",300,4,4,0,0,Reflect
-2021-11-29,Activity,57.61,Retry,Nada,"[100, 200]",300,4,4,0,0,Reflect
-2021-11-29,Run,0.53,UUU,None,"[10, 20]",30,2,2,0,0,2
-2021-11-29,Run,0.53,UUU,None,20,30,2,2,0,0,2
-2021-11-29,Run,1.15,UUU,None,"[90, 110]",10101,2,2,0,0,None
-2021-11-29,Run,1.15,UUU,None,110,10101,2,2,0,0,None
-2021-11-29,Activity,29.77,UUU,WWWW,"[90, 110]",10101,4,4,0,0,Reflect
-2021-11-29,Activity,29.77,UUU,WWWW,"[90, 110]",10101,4,4,0,0,Reflect
-2021-11-29,Run,0.52,Last time,None,"[10, 20]",30,2,2,0,0,None
-2021-11-29,Run,0.52,Last time,None,20,30,2,2,0,0,None
-2021-11-29,Run,0.75,Last time,None,"[69, 71]",90,2,2,0,0,Nothing
-2021-11-29,Run,0.75,Last time,None,71,90,2,2,0,0,Nothing
-2021-11-29,Activity,35.35,Last time,This please work,"[[10, 20], [69, 71]]","[30, 90]",4,4,0,0,Reflection
-2021-11-29,Activity,35.35,Last time,This please work,"[69, 71]",90,4,4,0,0,Reflection
-2021-11-29,Run,1.33,Print test,None,"[10, 20]",30,2,2,0,0,GHA
-2021-11-29,Run,1.33,Print test,None,20,30,2,2,0,0,GHA
-2021-11-29,Run,0.51,input,None,"[10, 20]",30,2,2,0,0,Three
-2021-11-29,Run,0.51,input,None,20,30,2,2,0,0,Three
-2021-11-29,Run,1.61,Input,None,"[10, 20]",30,4,4,0,0,2
-2021-11-29,Run,1.61,Input,None,20,30,4,4,0,0,2
-2021-11-29,Run,1.25,YAY,None,"[10, 20]",30,2,2,0,0,Thinks
-2021-11-29,Activity,1087.3,YAY,NODO,"[[10, 20]]",[30],2,2,0,0,This is a reflection
-2021-11-29,Run,0.94,In CS,None,"[90, 100]",50,2,2,0,0,None
-2021-11-29,Activity,59.25,In CS,Unnoticed,"[[10, 20], [90, 100]]","[30, 50]",4,4,0,0,Reflections
-2021-11-29,Activity,59.25,In CS,Unnoticed,"[90, 100]",50,4,4,0,0,Reflections
-2021-11-29,Run,0.97,CSCI,None,"[10, 20]",30,2,2,0,0,Thirty
-2021-11-29,Run,1.37,Ready,None,"[10, 20]",30,2,2,0,0,Nada
+Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection,Session
+2021-11-29,Run,0.35,Retry,None,"[10, 20]",30,2,2,0,0,Nothing,0
+2021-11-29,Run,0.41,Retry,None,"[100, 200]",300,2,2,0,0,Na,0
+2021-11-29,Activity,57.61,Retry,Nada,"[100, 200]",300,4,4,0,0,Reflect,0
+2021-11-29,Run,0.52,Last time,None,"[10, 20]",30,2,2,0,0,None,1
+2021-11-29,Run,0.75,Last time,None,"[69, 71]",90,2,2,0,0,Nothing,1
+2021-11-29,Activity,35.35,Last time,This please work,"[[10, 20], [69, 71]]","[30, 90]",4,4,0,0,Reflection,1
+2021-11-29,Run,1.25,YAY,None,"[10, 20]",30,2,2,0,0,Thinks,1
+2021-11-29,Activity,1087.3,YAY,NODO,"[[10, 20]]",[30],2,2,0,0,This is a reflection,1
+2021-11-29,Run,0.94,In CS,None,"[90, 100]",50,2,2,0,0,None,2
+2021-11-29,Activity,59.25,In CS,Unnoticed,"[[10, 20], [90, 100]]","[30, 50]",4,4,0,0,Reflections,2
+2021-11-29,Run,1.37,Ready,None,"[10, 20]",30,2,2,0,0,Nada,2
 2021-11-29,Activity,59.29,Ready,Not,"[[10, 20]]",[30],2,2,0,0,HA
+2021-11-30,Run,4.21,Ready,None,"[90, 112]",90,5,3,1,1,Duh,3
+2021-11-30,Activity,27.11,Ready,Testing flow,"[[90, 112]]",[90],5,3,1,1,I am reflecting,3
+2021-11-30,Run,0.99,Ready,None,"[1, 2]",90,2,2,0,0,No thoughts,4
+2021-11-30,Activity,39.74,Ready,Dez,"[[1, 2]]",[90],2,2,0,0,No reflections,4
+2021-11-30,Run,4.27,Last time,None,"[10, 90]",50,7,5,1,1,No thoughts,5
+2021-11-30,Activity,28.66,Last time,Working,"[[10, 90]]",[50],7,5,1,1,Reflections,5
+2021-11-30,Run,2.67,In CS,None,"[80, 120]",60,7,5,1,1,No thoughts,6
+2021-11-30,Activity,21.71,In CS,This works?,"[[80, 120]]",[60],7,5,1,1,Realsdkfj,6
+2021-11-30,Run,5.29,Them Lofi Beats,None,"[20, 30]",64,5,3,1,1,I liked that,7
+2021-11-30,Run,19.37,Them Lofi Beats,None,"[20, 30]",70,40,32,4,4,Should it reset differently?,7
+2021-11-30,Run,11.14,Them Lofi Beats,None,"[90, 110]",64,20,14,5,1,Reset good,7
+2021-11-30,Run,3.36,Them Lofi Beats,None,"[90, 110]",80,7,6,0,1,Easy,7
+2021-11-30,Activity,135.98,Them Lofi Beats,30 Minute lofi,"[[20, 30], [20, 30], [90, 110], [90, 110]]","[64, 70, 64, 80]",72,55,10,7,"Hopefully this worked well, we'll see how the input deals",7
+2021-11-30,Run,5.19,Kicking it with the fam,None,"[30, 50]",90,8,5,1,2,It worked!,8
+2021-11-30,Run,9.4,Kicking it with the fam,None,"[30, 50]",110,14,9,3,2,2,8
+2021-11-30,Activity,105.24,Kicking it with the fam,"Just relaxing, watch technique","[[30, 50], [30, 50]]","[90, 110]",22,14,4,4,"This, generally, works",8
+2021-11-30,Run,0.93,Ready,None,"[90, 42]",98,2,2,0,0,Create check if measure end is larger than measure start,8
+2021-11-30,Run,4.64,Ready,None,"[98, 100]",45,8,6,1,1,Exiting please,8
+2021-11-30,Activity,80.62,Ready,Getting ready for this test,"[[30, 50], [30, 50], [90, 42], [98, 100]]","[90, 110, 98, 45]",32,22,5,5,"This, worked, well",8
+2021-11-30,Run,13.43,Them Lofi Beats,None,"[20, 40]",50,8,5,1,2,That worked,9
+2021-11-30,Activity,98.85,Them Lofi Beats,Set some goals,"[[20, 40]]",[50],8,5,1,2,These are relfections,9
+2021-11-30,Run,0.7,Testing stuff,None,"[40, 50]",70,2,2,0,0,Sure,9
+2021-11-30,Activity,24.94,Testing stuff,These are goals,"[[20, 40], [40, 50]]","[50, 70]",10,7,1,2,These are also relfections,9

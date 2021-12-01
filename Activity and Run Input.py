@@ -2,6 +2,7 @@
 
 # Reference: Documentation on adding lists to DataFrames https://stackoverflow.com/questions/26483254/python-pandas-insert-list-into-a-cell
 #FIXME .csv must be alterable via user_profile
+#FIXME Blank space MUST exist after last entry in csv, otherwise new entry appends to end of last one
 
 import datetime
 import time
@@ -20,7 +21,8 @@ Activity_Dict = {
     'SuccessfulAttempts': 0,
     'UnsuccessfulAttempts': 0,
     'NeutralAttempts': 0,
-    'Reflection': ''
+    'Reflection': '',
+    'Session': 0,
 }
 
 Run_Dict = {
@@ -35,10 +37,57 @@ Run_Dict = {
     'SuccessfulAttempts': 0,
     'UnsuccessfulAttempts': 0,
     'NeutralAttempts': 0,
-    'Reflection': 'Fill'
+    'Reflection': 'Fill',
+    'Session': 0
 }
 
+def main_menu():
+
+    #FIXME Maybe some art?
+    print("Welcome to Pracktice, the music practicing app!")
+    # create
+    global user_csv
+
+    user_profile = input("What user profile are we using?> ")
+    user_csv = str(user_profile) + ".csv"
+
+    global dfp
+
+    data = pd.read_csv(user_csv)
+    data.head()
+    dfp = pd.DataFrame(data)
+
+
+    print(f"Welcome back {user_profile}!")
+
+    print("[1] Start a practice session")
+    print("[2] Analyze data")
+    user_main_menu = int(input("Choice> "))
+    if user_main_menu == 1:
+        session_start()
+    elif user_main_menu == 2:
+        return 0
+
+def session_start():
+
+    # FINDS LENGTH OF SESSIONS
+    Activity_Dict['Session'] = int(determine_last_session(user_csv) + 1)
+    Run_Dict['Session'] = int(determine_last_session(user_csv) + 1)
+
+    print("Would you like to see a report of your last session?\n[1] Yes\n[2] No")
+    choice = input("Choice> ")
+    if choice == "1":
+        generate_report_last_session()
+        activity_start()
+    elif choice == "2":
+        activity_start()
+    else:
+        print("Please select either 1 or 2")
+
+
 def activity_start():
+
+    print()
     print("You started a new activity")
 
     # OBTAINING DATE
@@ -231,14 +280,6 @@ def from_run_to_session():
     if user_option == 3:
         run_start_measures()
 
-def data_call(user_profile):
-    pt_table = pd.read_csv(user_profile)
-    user_type = input("What type would you like to retrieve? (Either Activity or Run)> ")
-    type_frame = pt_table['Type'] == user_type
-    type_indices = list(pt_table.index[type_frame])
-    for index in type_indices:
-        print(pt_table.iloc[index])
-
 
 def activity_end():
 
@@ -265,46 +306,60 @@ def activity_end():
     act_testing_frame.at[0, "Sections"] = dummy_sections
     act_testing_frame.at[0, "Tempos"] = dummy_tempos
 
-    print(act_testing_frame.iloc[0])
-    print(act_testing_frame[0:1])
-
     act_testing_frame[0:1].to_csv('Isaac.csv', mode='a', index=False, header=False)
 
     print("Way to practice that piece!")
     print('What would you like to do next?')
     print("[1] Start a new piece\n[2] End session")
     print("[DEV3] End trial and print")
-    user_option = int(input("OPTION> "))
+    user_option = input("OPTION> ")
 
-    if user_option == 1:
+    if int(user_option) == 1:
         activity_start()
-    elif user_option == 2:
-        print("Kicked to end of session manager")
-    elif user_option == 3:
+    elif int(user_option) == 2:
+        main_menu()
+    elif int(user_option) == 3:
         print(Activity_Dict)
         print(Run_Dict)
     else:
         print("Please enter a valid number")
 
-def main_menu():
+# Random things happening
+def determine_last_session(user_profile):
+    dfp = pd.read_csv(user_profile)
+    last_index = int(dfp.size / 13) - 1
+    last_session = int(dfp.iloc[last_index]['Session'])
+    return last_session
 
-    #FIXME Maybe some art?
-    print("Welcome to Pracktice, the music practicing app!")
+def generate_report_last_session():
 
-    global user_csv
+    #establish empty lists
+    activity_indices = []
+    run_indices = []
 
-    user_profile = input("What user profile are we using?")
-    user_csv = str(user_profile) + ".csv"
-    print(f"Welcome back {user_profile}!")
+    # cycle to get indices (able to put activities in front of runs)
+    for index in list(dfp.index[dfp['Session'] == determine_last_session("Isaac.csv")]):
+        if dfp.iloc[index]['Type'] == 'Activity':
+            activity_indices.append(index)
+        elif dfp.iloc[index]['Type'] == 'Run':
+            run_indices.append(index)
 
-    print("[1] Start a practice session")
-    print("[2] Analyze data")
-    user_main_menu = int(input("Choice> "))
-    if user_main_menu == 1:
-        activity_start()
-    elif user_main_menu == 2:
-        data_call(user_profile)
+    for index in activity_indices:
+        if dfp.iloc[index]["Type"] == 'Activity':
+            print()
+            print(f"Piece: {dfp.iloc[index]['Piece']}")
+            print(f"Overall reflection: {dfp.iloc[index]['Reflection']}")
+            print(f"Time spent (in SECONDS): {dfp.iloc[index]['Time']}")
 
+        for counter,index in enumerate(run_indices):
+            if dfp.iloc[index]["Type"] == 'Run':
+                print()
+                print(f"\tAction type: {dfp.iloc[index]['Type']}_{counter}")
+                print(f"\t\tTempos: {dfp.iloc[index]['Tempos']}")
+                print(f"\t\tSections: {dfp.iloc[index]['Sections']}")
+                print(f"\t\tReflections: {dfp.iloc[index]['Reflection']}")
+
+    print()
 
 def piece_retrieval(user_csv):
 
@@ -330,10 +385,10 @@ def piece_retrieval(user_csv):
 
     #FIXME Error Handling
     if piece_selection == len(previous_piece):
-        user_piece = input("Activity name")
+        user_piece = input("Activity name> ")
     else:
         user_piece = previous_piece[piece_selection]
 
     return user_piece
 
-activity_start()
+main_menu()

@@ -45,10 +45,10 @@ print()
 
 testing_frame.to_csv('PT.csv', mode = 'a', index=False, header=True)
 
-pt_table = pd.read_csv("PT.csv")
+dfp = pd.read_csv("PT.csv")
 
-pt_table.info()
+dfp.info()
 
-print(pt_table[pt_table['Type'] == 'Activity1']['AttemptsTotal'])
+print(dfp[dfp['Type'] == 'Activity1']['AttemptsTotal'])
 
-print(pt_table.iloc[1])
+print(dfp.iloc[1])
