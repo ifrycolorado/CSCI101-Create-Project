@@ -1,8 +1,8 @@
 # CSV Header Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection
 
 # Reference: Documentation on adding lists to DataFrames https://stackoverflow.com/questions/26483254/python-pandas-insert-list-into-a-cell
-#FIXME .csv must be alterable via user_profile
-#FIXME Take Isaac.csv out of every call and make room for new user_profile
+#FIXME error handling for inputs
+#
 
 import datetime
 import time
@@ -49,32 +49,40 @@ Blank_List = ['Date','Type','Time','Piece','Goals','Sections','Tempos',
 print("Welcome to Pracktice, the music practicing app!")
 
 def main_menu():
-    user_profile = input("What user profile are we using? (Case sensitive)> ")
+
+    user_profile = input("What user profile are we using? (Enter anything to navigate to profile creation)"
+                         "\nProfile (Case sensitive)> ")
 
     global creation_value
+    global user_csv
 
     try:
-        global dfp
-        global user_csv
 
+        # create user_csv that all functions will use
         user_csv = str(user_profile) + ".csv"
 
+        # create dataframe
+        global dfp
         data = pd.read_csv(user_csv)
         data.head()
         dfp = pd.DataFrame(data)
+
         print(f"Welcome back {user_profile}!")
+
+        # set creation_value
         creation_value = False
+
         main_menu_valid(creation_value)
 
     except:
         print("User profile does not exist. Would you like to create a new profile, or retry account input?\n[1] New Profile\n[2] Retry")
         user_choice = input("Choice> ")
         if user_choice == "1":
-            account_creation()
+            account_creation(user_profile)
         elif user_choice == "2":
             main_menu()
 
-def account_creation():
+def account_creation(user_profile):
 
     # set a variable for branches if this is a new account
     creation_value = True
@@ -90,15 +98,14 @@ def account_creation():
         creating_writer.writerow(Blank_List)
     print(f"Welcome to Pracktice, {account_name}!")
 
+    # delcare user_csv
+    user_csv = str(user_profile) + ".csv"
+
     # assign new dfp dataframe
     global dfp
     data = pd.read_csv(user_csv)
     data.head()
     dfp = pd.DataFrame(data)
-
-    global user_csv
-
-    user_csv = str(user_profile) + ".csv"
 
     main_menu_valid(creation_value)
 
@@ -107,11 +114,14 @@ def main_menu_valid(value):
     if value == False:
         print("[1] Start a practice session")
         print("[2] Analyze data")
+        print('[3] Quit')
         user_main_menu = int(input("Choice> "))
         if user_main_menu == 1:
             session_start(value)
         elif user_main_menu == 2:
             return 0
+        elif user_main_menu == 3:
+            print()
 
     if value == True:
         print("[1] Start a practice session")
@@ -140,8 +150,8 @@ def session_start(value):
 
 def activity_start():
 
-    print()
     print("You started a new activity")
+    print()
 
     # OBTAINING DATE
     # FIXME is it worth keeping it as a datetime object?
@@ -158,7 +168,7 @@ def activity_start():
     Activity_Dict['Time'] = time.time()
 
     # SETTING PIECE
-    current_piece = piece_retrieval('Isaac.csv')
+    current_piece = piece_retrieval(user_csv)
     Activity_Dict['Piece'] = current_piece
 
     # SETTING GOALS
@@ -318,15 +328,14 @@ def from_run_to_session():
     run_testing_frame.at[0, "Sections"] = dummy_sections
     run_testing_frame.at[0, "Tempos"] = dummy_tempos
 
-    run_testing_frame[0:1].to_csv('Isaac.csv', mode='a', index=False, header=False)
+    run_testing_frame[0:1].to_csv(user_csv, mode='a', index=False, header=False)
 
     print("Way to go!")
     print("What would you like to do next?")
-    print("[1] Start a new piece\n[2] Keep running this section at different tempo\n"
+    print("[1] Start a new piece or end session\n[2] Keep running this section at different tempo\n"
           "[3] Keep running this piece with a different section")
     user_option = int(input("OPTION> "))
     if user_option == 1:
-        print('Kicked back to activity manager, start reflection')
         activity_end()
     if user_option == 2:
         run_start_tempos()
@@ -342,7 +351,7 @@ def activity_end():
     Activity_Dict['Time'] = round(total_time, 2)
 
     # REFLECTION
-    act_reflection = input("What are your notes/reflections on that activity?> ")
+    act_reflection = input("What are your notes/reflections on the activity you just completed?> ")
     if len(act_reflection) == 0:
         act_reflection = "None"
     Activity_Dict['Reflection'] = act_reflection
@@ -359,21 +368,16 @@ def activity_end():
     act_testing_frame.at[0, "Sections"] = dummy_sections
     act_testing_frame.at[0, "Tempos"] = dummy_tempos
 
-    act_testing_frame[0:1].to_csv('Isaac.csv', mode='a', index=False, header=False)
+    act_testing_frame[0:1].to_csv(user_csv, mode='a', index=False, header=False)
 
-    print("Way to practice that piece!")
     print('What would you like to do next?')
     print("[1] Start a new piece\n[2] End session")
-    print("[DEV3] End trial and print")
     user_option = input("OPTION> ")
 
     if int(user_option) == 1:
         activity_start()
     elif int(user_option) == 2:
-        main_menu()
-    elif int(user_option) == 3:
-        print(Activity_Dict)
-        print(Run_Dict)
+        main_menu_valid()
     else:
         print("Please enter a valid number")
 
@@ -391,7 +395,7 @@ def generate_report_last_session():
     run_indices = []
 
     # cycle to get indices (able to put activities in front of runs)
-    for index in list(dfp.index[dfp['Session'] == determine_last_session("Isaac.csv")]):
+    for index in list(dfp.index[dfp['Session'] == determine_last_session(user_csv)]):
         if dfp.iloc[index]['Type'] == 'Activity':
             activity_indices.append(index)
         elif dfp.iloc[index]['Type'] == 'Run':

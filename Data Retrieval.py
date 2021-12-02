@@ -2,10 +2,11 @@ import csv
 import pandas as pd
 import numpy as np
 from numpy import *
-import ast
 import matplotlib.pyplot as plt
 
-#  references: https://docs.python.org/3/library/ast.html for ast
+#  references: bar graph documentation https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
+#  references: constrained layout docs: https://matplotlib.org/stable/tutorials/intermediate/constrainedlayout_guide.html
+#  references: plt.setp rotation https://stackoverflow.com/questions/31372953/plt-setp-alternative-for-subplots-or-how-to-set-text-rotation-on-x-axis-for-subp
 
 data = pd.read_csv('Isaac.csv')
 data.head()
@@ -104,9 +105,9 @@ def retrieve_time_by_date(array_1):
 
         time_sum = 0
         for index in master_indices:
-            print(dfp.iloc[index])
             # if dfp.iloc[index]['Type'] == 'Activity':
-            time_sum += float(dfp.iloc[index]['Time'])
+            minutes = seconds_to_minutes(float(dfp.iloc[index]['Time']))
+            time_sum += minutes
         array_2 = append(array_2,time_sum)
 
     return array_2
@@ -128,8 +129,8 @@ def retrieve_time_by_piece(array_1):
         time_sum = 0
         for index in master_indices:
             # if dfp.iloc[index]['Type'] == 'Activity':
-            print(dfp.iloc[index]['Time'])
-            time_sum += float(dfp.iloc[index]['Time'])
+            minutes = seconds_to_minutes(float(dfp.iloc[index]['Time']))
+            time_sum += minutes
         array_2 = append(array_2, time_sum)
 
     return array_2
@@ -168,14 +169,14 @@ def piece_retrieval(user_csv):
     return user_piece
 
 # FIXME add this into main menu flow (will have to take exception of empty csv)
-def generate_report_last_session():
+def generate_report_last_session(user_csv):
 
     #establish empty lists
     activity_indices = []
     run_indices = []
 
     # cycle to get indices (able to put activities in front of runs)
-    for index in list(dfp.index[dfp['Session'] == determine_last_session("Isaac.csv")]):
+    for index in list(dfp.index[dfp['Session'] == determine_last_session(user_csv)]):
         if dfp.iloc[index]['Type'] == 'Activity':
             activity_indices.append(index)
         elif dfp.iloc[index]['Type'] == 'Run':
@@ -193,16 +194,42 @@ def generate_report_last_session():
             print(f"\t\tSections: {dfp.iloc[index]['Sections']}")
             print(f"\t\tReflections: {dfp.iloc[index]['Reflection']}")
 
-
+# FIXME already in Activity and Run Input
 def determine_last_session(user_profile):
     dfp = pd.read_csv(user_profile)
     last_index = int(dfp.size / 13) - 1
     last_session = int(dfp.iloc[last_index]['Session'])
     return last_session
 
-create_line(retrieve_pieces(),retrieve_time_by_piece(retrieve_pieces()),"Piece","Time")
+# FIXME taken from matplotlib documentation
+def create_bar_one_bar(array_1,array_2,array_1_name,array_2_name):
+
+    width = 0.35
+    x = np.arange(len(array_1))
+
+    fig, ax = plt.subplots(constrained_layout = True)
+    rects1 = ax.bar(x, array_2, width, label=array_1_name)
+
+    ax.set_ylabel(array_2_name)
+    ax.set_xlabel(array_1_name)
+    ax.set_title(f"{array_1_name} by {array_2_name}")
+    ax.set_xticks(x, array_1)
+
+    ax.bar_label(rects1, padding=3)
+
+    # Fixme why does this work?
+    plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
+
+    plt.show()
+
+def seconds_to_minutes(seconds):
+    minutes = seconds // 60
+    return minutes
 
 '''
+create_bar_one_bar(retrieve_dates(),retrieve_time_by_date(retrieve_dates()),"Date","Time")
+create_line(retrieve_pieces(),retrieve_time_by_piece(retrieve_pieces()),"Piece","Time")
+
 for index in index_list:
     if df.iloc[index]['Type'] == 'Activity':
         print(df)
@@ -220,21 +247,51 @@ with open("Isaac.csv", "r") as practice_file:
     for line in practice_reader:
         if line[1] == "Run":
             tempo_list.append(int(line[6]))
+            
+def retrieve_time_by_date(array_1):
 
-#FIXME each entry in section taken as own stat: need entire list to be one stat
-#FIXME doesn't matter if this isn't an option: just use counts per section per piece, or tempo per section per piece
+    array_2 = np.array([])
 
-section_array.sort(axis=0)
-print(section_array)
+    for item in array_1:
 
-tempo_array = np.array(tempo_list)
-tempo_array.sort()
-print(tempo_array)
+        index_list_date = list(dfp.index[dfp['Date'] == item])
+        index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
+        master_indices = []
 
-plt.plot(section_array, tempo_array, 'g')
-plt.xlabel('Section')
-plt.ylabel('Tempo')
-plt.title('Test Plot')
-plt.show()
+        for index in index_list_date:
+            if index in index_list_activity:
+                master_indices.append(index)
+
+        time_sum = 0
+        for index in master_indices:
+            print(dfp.iloc[index])
+            # if dfp.iloc[index]['Type'] == 'Activity':
+            time_sum += float(dfp.iloc[index]['Time'])
+        array_2 = append(array_2,time_sum)
+
+    return array_2
+
+def retrieve_time_by_piece(array_1):
+
+    array_2 = np.array([])
+
+    for item in array_1:
+
+        index_list_date = list(dfp.index[dfp['Piece'] == item])
+        index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
+        master_indices = []
+
+        for index in index_list_date:
+            if index in index_list_activity:
+                master_indices.append(index)
+
+        time_sum = 0
+        for index in master_indices:
+            # if dfp.iloc[index]['Type'] == 'Activity':
+            print(dfp.iloc[index]['Time'])
+            time_sum += float(dfp.iloc[index]['Time'])
+        array_2 = append(array_2, time_sum)
+
+    return array_2
 '''
 
