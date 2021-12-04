@@ -45,8 +45,11 @@ Blank_List = ['Date','Type','Time','Piece','Goals','Sections','Tempos',
               'AttemptsTotal','SuccessfulAttempts','UnsuccessfulAttempts',
               'NeutralAttempts','Reflection','Session']
 
-#FIXME Maybe some art?
-print("Welcome to Pracktice, the music practicing app!")
+Notes_Dict = {'quarter':'♩','eigth':'♪','eighth_beamed':"♫",'repeat_left':'𝄆','repeat_right':'𝄇','sixteenth_beamed':'♬'}
+
+print(f"Welcome to {Notes_Dict['repeat_left']} PRACKTICE {Notes_Dict['repeat_right']}, "
+      f"the music practicing app! {Notes_Dict['eighth_beamed']}")
+print()
 
 def main_menu():
 
@@ -74,7 +77,8 @@ def main_menu():
 
         main_menu_valid(creation_value)
 
-    except:
+    except FileNotFoundError:
+
         print("User profile does not exist. Would you like to create a new profile, or retry account input?\n[1] New Profile\n[2] Retry")
         user_choice = input("Choice> ")
         if user_choice == "1":
@@ -82,6 +86,7 @@ def main_menu():
         elif user_choice == "2":
             main_menu()
 
+# FIXED ERROR HANDLING
 def account_creation(user_profile):
 
     # set a variable for branches if this is a new account
@@ -96,7 +101,7 @@ def account_creation(user_profile):
     with open(account_csv, "w") as creating_file:
         creating_writer = csv.writer(creating_file)
         creating_writer.writerow(Blank_List)
-    print(f"Welcome to Pracktice, {account_name}!")
+    print(f"Welcome to {Notes_Dict['repeat_left']} PRACKTICE {Notes_Dict['repeat_right']}, {account_name}!")
 
     # delcare user_csv
     user_csv = str(user_profile) + ".csv"
@@ -109,52 +114,70 @@ def account_creation(user_profile):
 
     main_menu_valid(creation_value)
 
+# FIXED ERROR HANDLING
 def main_menu_valid(value):
 
     if value == False:
-        print("[1] Start a practice session")
-        print("[2] Analyze data")
-        print('[3] Quit')
-        user_main_menu = int(input("Choice> "))
-        if user_main_menu == 1:
-            session_start(value)
-        elif user_main_menu == 2:
-            return 0
-        elif user_main_menu == 3:
-            print()
+        user_main_menu = 0
+        while user_main_menu != (1 or 2 or 3):
+            print("[1] Start a practice session")
+            print("[2] Analyze data")
+            print('[3] Quit')
+            user_main_menu = input("Choice> ")
+            if user_main_menu == '1':
+                session_start(value)
+            elif user_main_menu == '2':
+                return 0
+            elif user_main_menu == '3':
+                print()
+            else:
+                print("Please enter 1, 2, or 3")
+                print()
 
     if value == True:
-        print("[1] Start a practice session")
-        user_main_menu = int(input("Choice> "))
-        if user_main_menu == 1:
-            session_start(value)
+        user_main_menu = 0
+        while user_main_menu != ('1' or '2'):
+            print("[1] Start a practice session")
+            user_main_menu = input("Choice> ")
+            if user_main_menu == '1':
+                session_start(value)
+            elif user_main_menu == '2':
+                print()
+            else:
+                print("Please enter either 1 or 2")
+                print()
 
+# FIXED ERROR HANDLING
 def session_start(value):
 
     if value == False:
         # FINDS LENGTH OF SESSIONS
         Activity_Dict['Session'] = int(determine_last_session(user_csv) + 1)
         Run_Dict['Session'] = int(determine_last_session(user_csv) + 1)
+        # ASKS FOR INPUT (WITH ERROR HANDLING)
 
-        print("Would you like to see a report of your last session?\n[1] Yes\n[2] No")
-        choice = input("Choice> ")
-        if choice == "1":
-            generate_report_last_session()
-            activity_start()
-        elif choice == "2":
-            activity_start()
-        else:
-            print("Please select either 1 or 2")
+        choice = 0
+        while choice != ('1' or '2'):
+            print("Would you like to see a report of your last session?\n[1] Yes\n[2] No")
+            choice = input("Choice> ")
+            if choice == "1":
+                generate_report_last_session()
+                activity_start()
+            elif choice == "2":
+                activity_start()
+            else:
+                print("Please select either 1 or 2")
+
     elif value == True:
         activity_start()
 
+# FIXED
 def activity_start():
 
     print("You started a new activity")
     print()
 
     # OBTAINING DATE
-    # FIXME is it worth keeping it as a datetime object?
     date = datetime.date.today()
 
     date_string = str(date)
@@ -173,6 +196,10 @@ def activity_start():
 
     # SETTING GOALS
     current_goals = input("What are our goals for this activity?> ")
+
+    if len(current_goals) == 0:
+        current_goals = 'None'
+
     Activity_Dict['Goals'] = current_goals
 
     # REFLECTIONS SET LATER
@@ -181,22 +208,32 @@ def activity_start():
 
     run_start_measures()
 
-
+# FIXED
 def run_start_measures():
 
     # RESET TO BE APPENDED TO
     Run_Dict['Sections'] = []
 
     # RUN SECTIONS
-    start_measure = int(input("What measure are we starting at?> "))
-    end_measure = int(input("What measure are we ending at?> "))
-    measure_list = [start_measure, end_measure]
+    measure_list = []
+    start_measure = 'a'
+    end_measure = 'a'
+
+    error_handling_int("what measure are we starting at?> ",start_measure)
+
+    measure_list.append(start_measure)
+
+    error_handling_int("What measure are we ending at?> ",end_measure)
+
+    measure_list.append(end_measure)
+
+    measure_list.sort()
 
     Run_Dict['Sections'] = measure_list
 
     run_start_tempos()
 
-
+# FIXED
 def run_start_tempos():
 
     # DATE
@@ -212,17 +249,27 @@ def run_start_tempos():
     Activity_Dict['Sections'].append(Run_Dict['Sections'])
 
     # TEMPOS
-    tempo = int(input("What tempo are we running this at?> "))
+    tempo = 'a'
+    while type(tempo) != int():
+        try:
+            tempo = int(input("What tempo are we running this at?> "))
+            break
+        except ValueError:
+            print("Please enter a number")
+            print()
+
     Run_Dict['Tempos'] = tempo
     Activity_Dict['Tempos'].append(tempo)
 
     candy_tracker(Activity_Dict['Goals'])
 
-
+# FIXED
 def candy_tracker(activity_goal):
 
+    # establish format
     format_string = '{left:<16}{right:>16}'
 
+    # initialize variables
     user_input = 0
     running_total = 0
     TotalAttempts = 0
@@ -232,19 +279,38 @@ def candy_tracker(activity_goal):
 
     difficulty_value = False
 
-    candy_length = int(input("Enter amount of tokens between 1 and 16> "))
+    candy_length_dummy = 0
 
-    difficulty = int(input("Would you like to practice where your tokens reset on an unsuccessful run?\n[1] Yes\n[2] No\nOption> "))
+    # error handling input
+    while candy_length_dummy != 1:
+        candy_length = input("Enter amount of tokens between 1 and 16> ")
+        print()
+        try:
+            if int(candy_length) in range(1,17):
+                candy_length_dummy = 1
+                candy_length = int(candy_length)
+                break
+            else:
+                print("Please enter a number between 1 and 16\n")
+        except ValueError:
+            print("Please enter a valid number\n")
 
-    candies_left_standard = "*" * candy_length
+    candies_left_standard = Notes_Dict['quarter'] * candy_length
 
-    if difficulty == 1:
+    # error handling for difficulty
+    difficulty = error_handling_int_plus(['Yes','No'],
+                                         'Would you like to practice where your tokens reset on an unsuccessful run?')
+
+    if difficulty == '1':
         difficulty_value = True
+
+    print(difficulty_value)
 
     print()
 
     run_start_practice = time.time()
 
+    # start loop for token tracking
     while user_input != "1":
 
         if running_total <= 0:
@@ -258,28 +324,29 @@ def candy_tracker(activity_goal):
             candies_left = candies_left_standard[:-(running_total - candy_length)]
         candies_right = candies_left_standard[:(candy_length - len(candies_left))]
 
-        print(f"Activity Goal: {activity_goal}")
+        print(f"{Notes_Dict['repeat_left']} Activity Goal: {activity_goal} {Notes_Dict['repeat_right']}\n")
         print(format_string.format(left="Left", right="Right"))
         print(format_string.format(left=candies_left, right=candies_right))
 
-        print("[1] Exit\n[2] Successful run\n[3] Negation\n[4] Unsuccessful run\n")
-        user_input = input("Select choice: ")
+        print("\n[1] Exit [2] Successful run [3] Unfocused run [4] Unsuccessful run\n")
+        user_input = input("Choice> ")
+        if user_input in ['2','3','4']:
+            if user_input == "2":
+                running_total += 1
+                SuccessfulAttempts += 1
 
-        if user_input == "2":
-            running_total += 1
-            SuccessfulAttempts += 1
+            elif user_input == "3":
+                NeutralAttempts += 1
 
-        elif user_input == "3":
-            NeutralAttempts += 1
-
-        elif user_input == "4":
-            UnsuccessfulAttempts += 1
-            if difficulty_value == True:
-                running_total = 0
-            else:
-                running_total -= 1
-
-        TotalAttempts += 1
+            elif user_input == "4":
+                UnsuccessfulAttempts += 1
+                if difficulty_value == True:
+                    running_total = 0
+                else:
+                    running_total -= 1
+            TotalAttempts += 1
+        else:
+            print("Please enter a valid number")
 
         if running_total == candy_length * 2:
             user_input = "1"
@@ -414,7 +481,7 @@ def generate_report_last_session():
                 print(f"\tAction type: {dfp.iloc[index]['Type']}_{counter}")
                 print(f"\t\tTempos: {dfp.iloc[index]['Tempos']}")
                 print(f"\t\tSections: {dfp.iloc[index]['Sections']}")
-                print(f"\t\tReflections: {dfp.iloc[index]['Reflection']}")
+                print(f"\t\tReflection: {dfp.iloc[index]['Reflection']}")
 
     print()
 
@@ -448,4 +515,35 @@ def piece_retrieval(user_csv):
 
     return user_piece
 
-main_menu()
+
+def error_handling_int(message,variable):
+    while type(variable) != int():
+        try:
+            variable = int(input(message))
+            break
+        except ValueError:
+            print()
+            print("Please enter a number")
+
+def error_handling_int_plus(message_list,message):
+    variable = 0
+    while int(variable) not in range(1,len(message_list) + 1):
+        print(message)
+        for index, item in enumerate(message_list):
+            print(f"[{index + 1}] {message_list[index]}")
+        variable = input('Option> ')
+        try:
+            if int(variable) in range(1,len(message_list) + 1):
+                break
+            else:
+                print()
+                print(f"Please enter a number between 1 and {len(message_list)}")
+        except ValueError:
+            print()
+            print('Please enter a valid number')
+            print()
+
+    return variable
+
+candy_tracker("THIS")
+

@@ -135,8 +135,6 @@ def retrieve_time_by_piece(array_1):
 
     return array_2
 
-#create_line(retrieve_pieces(),retrieve_time_by_piece(retrieve_pieces()))
-
 def piece_retrieval(user_csv):
 
     print("Please select an activity or piece")
@@ -168,7 +166,6 @@ def piece_retrieval(user_csv):
 
     return user_piece
 
-# FIXME add this into main menu flow (will have to take exception of empty csv)
 def generate_report_last_session(user_csv):
 
     #establish empty lists
