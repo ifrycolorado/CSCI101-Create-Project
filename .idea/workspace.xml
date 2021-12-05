@@ -6,6 +6,7 @@
       <change beforePath="$PROJECT_DIR$/Activity and Run Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Activity and Run Input.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Retrieval.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data Retrieval.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Isaac.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Isaac.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lucas.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Lucas.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +42,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
   </component>
-  <component name="RunManager" selected="Python.Activity and Run Input">
+  <component name="RunManager" selected="Python.Data Retrieval">
     <configuration name="Activity and Run Input" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="CSCI101-Create-Project" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -154,8 +155,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Activity and Run Input" />
         <item itemvalue="Python.Data Retrieval" />
+        <item itemvalue="Python.Activity and Run Input" />
         <item itemvalue="Python.Testing UTF MUsic" />
         <item itemvalue="Python.Tetsting CSV error" />
         <item itemvalue="Python.CSV Reading Backwards" />
@@ -176,7 +177,7 @@
       <workItem from="1638399927135" duration="5001000" />
       <workItem from="1638463922533" duration="2374000" />
       <workItem from="1638566309698" duration="5565000" />
-      <workItem from="1638655028771" duration="2313000" />
+      <workItem from="1638655028771" duration="14999000" />
     </task>
     <servers />
   </component>
@@ -195,26 +196,10 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Activity and Run Input.py</url>
-          <line>412</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Activity and Run Input.py</url>
-          <line>384</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638658027592" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638661139055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$CSV_Reading_Backwards.coverage" NAME="CSV Reading Backwards Coverage Results" MODIFIED="1638291400668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Data_Retrieval.coverage" NAME="Data Retrieval Coverage Results" MODIFIED="1638656521563" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Data_Retrieval.coverage" NAME="Data Retrieval Coverage Results" MODIFIED="1638679318280" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Tetsting_CSV_error.coverage" NAME="Tetsting CSV error Coverage Results" MODIFIED="1638556025024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Testing_UTF_MUsic.coverage" NAME="Testing UTF MUsic Coverage Results" MODIFIED="1638557002033" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>

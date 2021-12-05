@@ -3,26 +3,41 @@ import pandas as pd
 import numpy as np
 from numpy import *
 import matplotlib.pyplot as plt
+from datetime import date
 
-#  references: bar graph documentation https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
-#  references: constrained layout docs: https://matplotlib.org/stable/tutorials/intermediate/constrainedlayout_guide.html
-#  references: plt.setp rotation https://stackoverflow.com/questions/31372953/plt-setp-alternative-for-subplots-or-how-to-set-text-rotation-on-x-axis-for-subp
+# references: bar graph documentation https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
+# references: constrained layout docs: https://matplotlib.org/stable/tutorials/intermediate/constrainedlayout_guide.html
+# references: plt.setp rotation https://stackoverflow.com/questions/31372953/plt-setp-alternative-for-subplots-or-how-to-set-text-rotation-on-x-axis-for-subp
+# references: date checking from Python Docs https://docs.python.org/3/library/datetime.html
 
 data = pd.read_csv('Isaac.csv')
 data.head()
 dfp = pd.DataFrame(data)
 
-def data_activity(user_profile):
+user_heading_list = ['Date', 'Action Type', 'Time (in seconds)', 'Piece', 'Goals', 'Sections', 'Tempos', 'Total Attempts',
+                      'Successful Attempts', 'Unsuccessful Attempts', 'Unfocused Attempts',
+                      'Reflection', 'Session Identifier']
 
-    global dfp
+# menus
+def data_main_menu():
+    user_input = error_handling_int_plus(['View Graphs', 'Generate Summaries','Return to Main Menu'], "Option> ")
+    if user_input == 1:
+        graph_menu()
+    elif user_input == 2:
+        summary_menu()
+    elif user_input == 3:
+        return 0
+        #main_menu_valid(False)
 
-    dfp = pd.read_csv(user_profile)
-    user_type = input("What type would you like to retrieve? (Either Activity or Run)> ")
-    type_frame = dfp['Type'] == user_type
-    type_indices = list(dfp.index[type_frame])
-    for index in type_indices:
-        print(dfp.iloc[index])
 
+def graph_menu():
+    return 0
+
+def summary_menu():
+    return 0
+
+
+# pulling
 def determine_last_session(user_profile):
     pt_table = pd.read_csv(user_profile)
     last_index = int(pt_table.size / 13) - 1
@@ -60,42 +75,23 @@ def pull_reflection_by_piece(user_profile):
     for index in list(dfp.index[dfp['Piece'] == selection]):
         print(f"Reflection on {dfp.iloc[index]['Date']} in {dfp.iloc[index]['Type']}: {dfp.iloc[index]['Reflection']}")
 
-def create_line(array_1,array_2,array_1_name,array_2_name):
-    plt.plot(array_1, array_2, 'g')
-    plt.xlabel(array_1_name)
-    plt.ylabel(array_2_name)
-    plt.title(f"{array_1_name} v. {array_2_name}")
-    plt.show()
+def retrieve_item(retrieving):
 
-# FIXME all retrieve_[thing] function have similar syntax
-
-def retrieve_dates():
     array_1 = np.array([])
-
-    for item in set(dfp['Date']):
+    for item in set(dfp[retrieving]):
         array_1 = append(array_1,item)
 
     array_1.sort()
 
     return array_1
 
-def retrieve_pieces():
-
-    array_1 = np.array([])
-    for item in set(dfp['Piece']):
-        array_1 = append(array_1,item)
-
-    array_1.sort()
-
-    return array_1
-
-def retrieve_time_by_date(array_1):
+def retrieve_thing_by_structure(array_1,structure,thing):
 
     array_2 = np.array([])
 
     for item in array_1:
 
-        index_list_date = list(dfp.index[dfp['Date'] == item])
+        index_list_date = list(dfp.index[dfp[structure] == item])
         index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
         master_indices = []
 
@@ -105,20 +101,19 @@ def retrieve_time_by_date(array_1):
 
         time_sum = 0
         for index in master_indices:
-            # if dfp.iloc[index]['Type'] == 'Activity':
-            minutes = seconds_to_minutes(float(dfp.iloc[index]['Time']))
+            minutes = seconds_to_minutes(float(dfp.iloc[index][thing]))
             time_sum += minutes
-        array_2 = append(array_2,time_sum)
+        array_2 = append(array_2, time_sum)
 
     return array_2
 
-def retrieve_time_by_piece(array_1):
+def retrieve_thing_by_structure_not_time(array_1,structure,thing):
 
     array_2 = np.array([])
 
     for item in array_1:
 
-        index_list_date = list(dfp.index[dfp['Piece'] == item])
+        index_list_date = list(dfp.index[dfp[structure] == item])
         index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
         master_indices = []
 
@@ -128,8 +123,7 @@ def retrieve_time_by_piece(array_1):
 
         time_sum = 0
         for index in master_indices:
-            # if dfp.iloc[index]['Type'] == 'Activity':
-            minutes = seconds_to_minutes(float(dfp.iloc[index]['Time']))
+            minutes = float(dfp.iloc[index][thing])
             time_sum += minutes
         array_2 = append(array_2, time_sum)
 
@@ -166,6 +160,7 @@ def piece_retrieval(user_csv):
 
     return user_piece
 
+# FIXME already in Activity and Run Input
 def generate_report_last_session(user_csv):
 
     #establish empty lists
@@ -199,22 +194,53 @@ def determine_last_session(user_profile):
     return last_session
 
 # FIXME taken from matplotlib documentation
-def create_bar_one_bar(array_1,array_2,array_1_name,array_2_name):
+def create_bar_one_bar(array_x,array_y,array_x_name,array_y_name):
 
     width = 0.35
-    x = np.arange(len(array_1))
+    x = np.arange(len(array_x))
 
+    # create object
     fig, ax = plt.subplots(constrained_layout = True)
-    rects1 = ax.bar(x, array_2, width, label=array_1_name)
+    rects1 = ax.bar(x, array_y, width, label=array_x_name)
 
-    ax.set_ylabel(array_2_name)
-    ax.set_xlabel(array_1_name)
-    ax.set_title(f"{array_1_name} by {array_2_name}")
-    ax.set_xticks(x, array_1)
+    # set axis names and labels
+    ax.set_ylabel(array_y_name)
+    ax.set_xlabel(array_x_name)
+    ax.set_title(f"{array_x_name} by {array_y_name}")
+    ax.set_xticks(x, array_x)
 
     ax.bar_label(rects1, padding=3)
 
-    # Fixme why does this work?
+    plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
+
+    plt.show()
+
+def create_three_bar(array_beta,array_x1,array_x2,array_x3,array_y,array_x1_name,array_x2_name,array_x3_name,array_y_name):
+
+    print(array_x1)
+    print(array_x2)
+    print(array_x3)
+    print(array_y)
+
+
+    x = np.arange(len(array_x1))  # the label locations
+    width = 0.15  # the width of the bars
+
+    fig, ax = plt.subplots(constrained_layout = True)
+    rects1 = ax.bar(x, array_x1, width, label=array_x1_name)
+    rects2 = ax.bar(x + width, array_x2, width, label=array_x2_name)
+    rects3 = ax.bar(x + width * 2, array_x3, width, label=array_x3_name)
+
+    # Add some text for labels, title and custom x-axis tick labels, etc.
+    ax.set_ylabel(array_y_name)
+    ax.set_title(f"Attempts by {array_y_name}")
+    ax.set_xticks(x, array_beta)
+    ax.legend()
+
+    ax.bar_label(rects1, padding=2)
+    ax.bar_label(rects2, padding=2)
+    ax.bar_label(rects3, padding=2)
+
     plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
 
     plt.show()
@@ -223,72 +249,95 @@ def seconds_to_minutes(seconds):
     minutes = seconds // 60
     return minutes
 
+# generating report
+def generate_report_by_parameter(start_input = "0000-00-00",end_input = '9999-99-99',piece=''):
+    index_list_date_start = 0
+    index_list_date_end = len(dfp)
+    piece_list = list(dfp.head(n=0))
+    top_heads = list(dfp.head(n=0))
+
+    if start_input != '0000-00-00':
+        start_date = validity_of_date(start_date=start_input,start=True)
+        index_list_date_start = list(dfp.index[dfp['Date'] == start_date])[0]
+    if end_input != '0000-00-00':
+        end_date = validity_of_date(end_date=end_input, end=True)
+        index_list_date_end = list(dfp.index[dfp['Date'] == end_date])[-1]
+    if piece != '':
+        piece_list = list(dfp.index[dfp['Piece'] == piece])[1:]
+
+    master_indices = []
+
+    for index in list(range(index_list_date_start,index_list_date_end+1)):
+        for heading_index in piece_list:
+            if heading_index == index:
+                master_indices.append(heading_index)
+
+    for index in master_indices:
+        for index_lowest in range(len(user_heading_list)):
+            if index_lowest == 0:
+                print(f"{user_heading_list[index_lowest]}: {dfp.iloc[index][top_heads[index_lowest]]}")
+            else:
+                print(f"\t{user_heading_list[index_lowest]}: {dfp.iloc[index][top_heads[index_lowest]]}")
+        print()
+
+# background calls
+def validity_of_date(start_date='',end_date='',start=False,end=False):
+    if start:
+        actual_start = dfp.iloc[0]['Date']
+        if start_date <= actual_start:
+            return actual_start
+        elif start_date > actual_start:
+            return start_date
+    if end:
+        actual_end = dfp.iloc[-1]['Date']
+        if end_date >= actual_end:
+            return actual_end
+        elif end_date < actual_end:
+            return end_date
+
+def get_desired_date():
+    dummy = 0
+    print("Please enter the date in a YYYY-MM-DD format")
+    while dummy != 1:
+        user_date = input("Date> ")
+        try:
+            returning = date.fromisoformat(user_date)
+            dummy = 1
+            break
+        except ValueError:
+            print("Please enter a valid date\n")
+    return returning
+
+def error_handling_int_plus(message_list,message):
+    variable_dummy = 0
+    while variable_dummy != 1:
+        for index, item in enumerate(message_list):
+            print(f"[{index + 1}] {message_list[index]}")
+        variable = input(message)
+        print()
+        try:
+            if int(variable) in range(1,len(message_list) + 1):
+                variable_dummy = 1
+                variable = int(variable)
+                break
+            else:
+                print(f"Please enter a number between 1 and {len(message_list)}\n")
+        except ValueError:
+            print('Please enter a valid number\n')
+
+    return variable
+
+
+#generate_report_by_parameter('2021-11-30','2021-12-01',"Retry")
+
 '''
-create_bar_one_bar(retrieve_dates(),retrieve_time_by_date(retrieve_dates()),"Date","Time")
-create_line(retrieve_pieces(),retrieve_time_by_piece(retrieve_pieces()),"Piece","Time")
-
-for index in index_list:
-    if df.iloc[index]['Type'] == 'Activity':
-        print(df)
-
-with open("Isaac.csv", "r") as practice_file:
-    section_array = np.array([])
-    practice_reader = csv.reader(practice_file)
-    for line in practice_reader:
-        if line[1] == "Run":
-            section_array = append(section_array, line[5])
-
-with open("Isaac.csv", "r") as practice_file:
-    tempo_list = []
-    practice_reader = csv.reader(practice_file)
-    for line in practice_reader:
-        if line[1] == "Run":
-            tempo_list.append(int(line[6]))
-            
-def retrieve_time_by_date(array_1):
-
-    array_2 = np.array([])
-
-    for item in array_1:
-
-        index_list_date = list(dfp.index[dfp['Date'] == item])
-        index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
-        master_indices = []
-
-        for index in index_list_date:
-            if index in index_list_activity:
-                master_indices.append(index)
-
-        time_sum = 0
-        for index in master_indices:
-            print(dfp.iloc[index])
-            # if dfp.iloc[index]['Type'] == 'Activity':
-            time_sum += float(dfp.iloc[index]['Time'])
-        array_2 = append(array_2,time_sum)
-
-    return array_2
-
-def retrieve_time_by_piece(array_1):
-
-    array_2 = np.array([])
-
-    for item in array_1:
-
-        index_list_date = list(dfp.index[dfp['Piece'] == item])
-        index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
-        master_indices = []
-
-        for index in index_list_date:
-            if index in index_list_activity:
-                master_indices.append(index)
-
-        time_sum = 0
-        for index in master_indices:
-            # if dfp.iloc[index]['Type'] == 'Activity':
-            print(dfp.iloc[index]['Time'])
-            time_sum += float(dfp.iloc[index]['Time'])
-        array_2 = append(array_2, time_sum)
-
-    return array_2
+create_three_bar(
+    retrieve_item('Piece'),
+    retrieve_thing_by_structure_not_time(retrieve_item("Piece"),'Piece','SuccessfulAttempts'),
+    retrieve_thing_by_structure_not_time(retrieve_item('Piece'),'Piece','UnsuccessfulAttempts'),
+    retrieve_thing_by_structure_not_time(retrieve_item('Piece'),'Piece','NeutralAttempts'),
+    retrieve_thing_by_structure_not_time(retrieve_item('Piece'),'Piece','AttemptsTotal'),
+    'Successful', 'Unsuccessful', 'Unfocused','Piece')
+    
+create_bar_one_bar(retrieve_item('Date'),retrieve_time_by_structure(retrieve_item('Date'),'Date'),"Date","Time")
 '''
-

@@ -1,6 +1,6 @@
 Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection,Session
-2021-12-01,Run,2.11,Lucas' piece,None,"[20, 30]",90,2,2,0,0,"This works, probably",0
-2021-12-01,Activity,39.11,Lucas' piece,Getting account set up,"[[20, 30]]",[90],2,2,0,0,I completed my goals,0
-2021-12-01,Run,1.7,Another piece,None,"[40, 50]",70,2,2,0,0,More thoughts,0
-2021-12-01,Run,2.7,Another piece,None,"[40, 50]",90,4,3,1,0,No thoughts,0
-2021-12-01,Activity,131.47,Another piece,More goals,"[[20, 30], [40, 50], [40, 50]]","[90, 70, 90]",8,7,1,0,I am reflecting,0
+2021-12-01,Run,400.11,Lucas' piece,None,"[20, 30]",90,2,2,0,0,"This works, probably",0
+2021-12-01,Activity,400.11,Lucas' piece,Getting account set up,"[[20, 30]]",[90],2,2,0,0,I completed my goals,0
+2021-12-02,Run,1.7,Another piece,None,"[40, 50]",70,2,2,0,0,More thoughts,1
+2021-12-02,Run,2.7,Another piece,None,"[40, 50]",90,4,3,1,0,No thoughts,1
+2021-12-02,Activity,131.47,Another piece,More goals,"[[20, 30], [40, 50], [40, 50]]","[90, 70, 90]",8,7,1,0,I am reflecting,1

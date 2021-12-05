@@ -1,8 +1,8 @@
 # CSV Header Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection
 
 # Reference: Documentation on adding lists to DataFrames https://stackoverflow.com/questions/26483254/python-pandas-insert-list-into-a-cell
-#FIXME error handling for inputs
-#
+# FIXME error handling for inputs
+# FIXME random encouragements
 
 import datetime
 import time
@@ -117,6 +117,7 @@ def account_creation(user_profile):
 # FIXED ERROR HANDLING
 def main_menu_valid(value):
 
+    # error handling abstractions
     if value == False:
         user_main_menu = 0
         while user_main_menu != (1 or 2 or 3):
@@ -301,7 +302,7 @@ def candy_tracker(activity_goal):
     difficulty = error_handling_int_plus(['Yes','No'],
                                          'Would you like to practice where your tokens reset on an unsuccessful run?')
 
-    if difficulty == '1':
+    if difficulty == 1:
         difficulty_value = True
 
     print(difficulty_value)
@@ -399,9 +400,8 @@ def from_run_to_session():
 
     print("Way to go!")
     print("What would you like to do next?")
-    print("[1] Start a new piece or end session\n[2] Keep running this section at different tempo\n"
-          "[3] Keep running this piece with a different section")
-    user_option = int(input("OPTION> "))
+    user_option = error_handling_int_plus(["Start a new piece or end session",'Keep running this section at different tempo',
+          'Keep running this piece with a different section'],'Option> ')
     if user_option == 1:
         activity_end()
     if user_option == 2:
@@ -438,17 +438,15 @@ def activity_end():
     act_testing_frame[0:1].to_csv(user_csv, mode='a', index=False, header=False)
 
     print('What would you like to do next?')
-    print("[1] Start a new piece\n[2] End session")
-    user_option = input("OPTION> ")
+    user_option = error_handling_int_plus(['Start a new piece', 'End session'],'Option> ')
 
-    if int(user_option) == 1:
+    if user_option == 1:
         activity_start()
-    elif int(user_option) == 2:
-        main_menu_valid()
-    else:
-        print("Please enter a valid number")
+    elif user_option == 2:
+        main_menu_valid(False)
 
-# Random things happening
+# BACKGROUND CALLS
+
 def determine_last_session(user_profile):
     dfp = pd.read_csv(user_profile)
     last_index = int(dfp.size / 13) - 1
@@ -473,7 +471,7 @@ def generate_report_last_session():
             print()
             print(f"Piece: {dfp.iloc[index]['Piece']}")
             print(f"Overall reflection: {dfp.iloc[index]['Reflection']}")
-            print(f"Time spent (in SECONDS): {dfp.iloc[index]['Time']}")
+            print(f"Time spent (in minutes): {seconds_to_minutes(dfp.iloc[index]['Time'])}")
 
         for counter,index in enumerate(run_indices):
             if dfp.iloc[index]["Type"] == 'Run':
@@ -482,6 +480,7 @@ def generate_report_last_session():
                 print(f"\t\tTempos: {dfp.iloc[index]['Tempos']}")
                 print(f"\t\tSections: {dfp.iloc[index]['Sections']}")
                 print(f"\t\tReflection: {dfp.iloc[index]['Reflection']}")
+                print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[index]['Time'])}")
 
     print()
 
@@ -515,7 +514,6 @@ def piece_retrieval(user_csv):
 
     return user_piece
 
-
 def error_handling_int(message,variable):
     while type(variable) != int():
         try:
@@ -526,24 +524,24 @@ def error_handling_int(message,variable):
             print("Please enter a number")
 
 def error_handling_int_plus(message_list,message):
-    variable = 0
-    while int(variable) not in range(1,len(message_list) + 1):
-        print(message)
+    variable_dummy = 0
+    while variable_dummy != 1:
         for index, item in enumerate(message_list):
             print(f"[{index + 1}] {message_list[index]}")
-        variable = input('Option> ')
+        variable = input(message)
+        print()
         try:
             if int(variable) in range(1,len(message_list) + 1):
+                variable_dummy = 1
+                variable = int(variable)
                 break
             else:
-                print()
-                print(f"Please enter a number between 1 and {len(message_list)}")
+                print(f"Please enter a number between 1 and {len(message_list)}\n")
         except ValueError:
-            print()
-            print('Please enter a valid number')
-            print()
+            print('Please enter a valid number\n')
 
     return variable
 
-candy_tracker("THIS")
-
+def seconds_to_minutes(seconds):
+    minutes = seconds // 60
+    return minutes
