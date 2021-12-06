@@ -4,38 +4,25 @@ import numpy as np
 from numpy import *
 import matplotlib.pyplot as plt
 from datetime import date
+import random
 
 # references: bar graph documentation https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
 # references: constrained layout docs: https://matplotlib.org/stable/tutorials/intermediate/constrainedlayout_guide.html
 # references: plt.setp rotation https://stackoverflow.com/questions/31372953/plt-setp-alternative-for-subplots-or-how-to-set-text-rotation-on-x-axis-for-subp
 # references: date checking from Python Docs https://docs.python.org/3/library/datetime.html
+# references: making dictionaries subscriptable https://www.kite.com/python/answers/how-to-index-a-dictionary-in-python
+
+Notes_Dict = {'quarter':'♩','eigth':'♪','eighth_beamed':"♫",'sixteenth_beamed':'♬','repeat_left':'𝄆','repeat_right':'𝄇'}
 
 data = pd.read_csv('Isaac.csv')
 data.head()
 dfp = pd.DataFrame(data)
 
+user_csv = 'Isaac.csv'
+
 user_heading_list = ['Date', 'Action Type', 'Time (in seconds)', 'Piece', 'Goals', 'Sections', 'Tempos', 'Total Attempts',
                       'Successful Attempts', 'Unsuccessful Attempts', 'Unfocused Attempts',
                       'Reflection', 'Session Identifier']
-
-# menus
-def data_main_menu():
-    user_input = error_handling_int_plus(['View Graphs', 'Generate Summaries','Return to Main Menu'], "Option> ")
-    if user_input == 1:
-        graph_menu()
-    elif user_input == 2:
-        summary_menu()
-    elif user_input == 3:
-        return 0
-        #main_menu_valid(False)
-
-
-def graph_menu():
-    return 0
-
-def summary_menu():
-    return 0
-
 
 # pulling
 def determine_last_session(user_profile):
@@ -78,6 +65,7 @@ def pull_reflection_by_piece(user_profile):
 def retrieve_item(retrieving):
 
     array_1 = np.array([])
+
     for item in set(dfp[retrieving]):
         array_1 = append(array_1,item)
 
@@ -129,34 +117,40 @@ def retrieve_thing_by_structure_not_time(array_1,structure,thing):
 
     return array_2
 
-def piece_retrieval(user_csv):
+def piece_retrieval(user_csv,activity_define=True):
 
-    print("Please select an activity or piece")
+    print("Please select an activity or piece:\n")
 
     previous_piece = []
 
     with open(user_csv, "r") as user_csv_file:
         user_csv_reader = csv.reader(user_csv_file)
         for line in user_csv_reader:
-            print(line[3])
             if line[1] == "Activity":
                 if line[3] not in previous_piece:
                     previous_piece.append(line[3])
 
     for index,piece in enumerate(previous_piece):
         print(f"[{index}] {piece}")
-    print(f"[{len(previous_piece)}] Define a new activity")
 
-    try:
-        piece_selection = int(input("Selection> "))
-    except (TypeError, ValueError, IndexError):
-        print("Please enter a valid number")
+    if activity_define:
+        print(f"[{len(previous_piece)}] Define a new activity")
+
+    # error handling
+    dummy = 0
+    while dummy != 1:
+        try:
+            piece_selection = int(input("Selection> "))
+            if piece_selection == len(previous_piece):
+                user_piece = input("Activity name")
+            else:
+                user_piece = previous_piece[piece_selection]
+            print()
+            dummy = 1
+        except (TypeError, ValueError, IndexError):
+            print("\nERROR: Please enter a valid number\n")
 
     #FIXME Error Handling
-    if piece_selection == len(previous_piece):
-        user_piece = input("Activity name")
-    else:
-        user_piece = previous_piece[piece_selection]
 
     return user_piece
 
@@ -184,7 +178,7 @@ def generate_report_last_session(user_csv):
             print(f"\tAction type: {dfp.iloc[index]['Type']}_{counter}")
             print(f"\t\tTempos: {dfp.iloc[index]['Tempos']}")
             print(f"\t\tSections: {dfp.iloc[index]['Sections']}")
-            print(f"\t\tReflections: {dfp.iloc[index]['Reflection']}")
+            print(f"\t\tReflections: {dfp.iloc[index]['Reflection']}\n")
 
 # FIXME already in Activity and Run Input
 def determine_last_session(user_profile):
@@ -217,13 +211,7 @@ def create_bar_one_bar(array_x,array_y,array_x_name,array_y_name):
 
 def create_three_bar(array_beta,array_x1,array_x2,array_x3,array_y,array_x1_name,array_x2_name,array_x3_name,array_y_name):
 
-    print(array_x1)
-    print(array_x2)
-    print(array_x3)
-    print(array_y)
-
-
-    x = np.arange(len(array_x1))  # the label locations
+    x = np.arange(len(array_x1))  # Locations of labels along x axis
     width = 0.15  # the width of the bars
 
     fig, ax = plt.subplots(constrained_layout = True)
@@ -245,10 +233,6 @@ def create_three_bar(array_beta,array_x1,array_x2,array_x3,array_y,array_x1_name
 
     plt.show()
 
-def seconds_to_minutes(seconds):
-    minutes = seconds // 60
-    return minutes
-
 # generating report
 def generate_report_by_parameter(start_input = "0000-00-00",end_input = '9999-99-99',piece=''):
     index_list_date_start = 0
@@ -259,11 +243,13 @@ def generate_report_by_parameter(start_input = "0000-00-00",end_input = '9999-99
     if start_input != '0000-00-00':
         start_date = validity_of_date(start_date=start_input,start=True)
         index_list_date_start = list(dfp.index[dfp['Date'] == start_date])[0]
-    if end_input != '0000-00-00':
+    if end_input != '9999-99-99':
         end_date = validity_of_date(end_date=end_input, end=True)
         index_list_date_end = list(dfp.index[dfp['Date'] == end_date])[-1]
     if piece != '':
         piece_list = list(dfp.index[dfp['Piece'] == piece])[1:]
+    elif piece == '':
+        piece_list = list(range(len(dfp)))
 
     master_indices = []
 
@@ -280,7 +266,7 @@ def generate_report_by_parameter(start_input = "0000-00-00",end_input = '9999-99
                 print(f"\t{user_heading_list[index_lowest]}: {dfp.iloc[index][top_heads[index_lowest]]}")
         print()
 
-# background calls
+# BACKGROUND CALLS
 def validity_of_date(start_date='',end_date='',start=False,end=False):
     if start:
         actual_start = dfp.iloc[0]['Date']
@@ -295,13 +281,14 @@ def validity_of_date(start_date='',end_date='',start=False,end=False):
         elif end_date < actual_end:
             return end_date
 
-def get_desired_date():
+def get_desired_date(message):
     dummy = 0
-    print("Please enter the date in a YYYY-MM-DD format")
+    print(message)
+    print("(Please enter the date in a YYYY-MM-DD format)")
     while dummy != 1:
         user_date = input("Date> ")
         try:
-            returning = date.fromisoformat(user_date)
+            returning = str(date.fromisoformat(user_date))
             dummy = 1
             break
         except ValueError:
@@ -327,17 +314,98 @@ def error_handling_int_plus(message_list,message):
 
     return variable
 
+def seconds_to_minutes(seconds):
+    just_minutes = seconds // 60
+    just_seconds = seconds % 60
+    return round((just_minutes + just_seconds/60),1)
 
-#generate_report_by_parameter('2021-11-30','2021-12-01',"Retry")
+def random_note_pick():
+    notes_list = list(Notes_Dict)
+    my_number = random.randint(0,3)
+    return notes_list[my_number]
 
-'''
-create_three_bar(
-    retrieve_item('Piece'),
-    retrieve_thing_by_structure_not_time(retrieve_item("Piece"),'Piece','SuccessfulAttempts'),
-    retrieve_thing_by_structure_not_time(retrieve_item('Piece'),'Piece','UnsuccessfulAttempts'),
-    retrieve_thing_by_structure_not_time(retrieve_item('Piece'),'Piece','NeutralAttempts'),
-    retrieve_thing_by_structure_not_time(retrieve_item('Piece'),'Piece','AttemptsTotal'),
-    'Successful', 'Unsuccessful', 'Unfocused','Piece')
-    
-create_bar_one_bar(retrieve_item('Date'),retrieve_time_by_structure(retrieve_item('Date'),'Date'),"Date","Time")
-'''
+# MENUS
+def data_main_menu():
+    #print(f"Welcome, {user_profile}, to the Data Menu")
+    user_input = error_handling_int_plus(['View Graphs', 'Generate Summaries','Return to Main Menu'], "Option> ")
+    if user_input == 1:
+        print(f"{Notes_Dict[random_note_pick()]} Welcome to the Graphing Menu!\n")
+        graph_menu()
+    elif user_input == 2:
+        print(f"{Notes_Dict[random_note_pick()]} Welcome to the Summary Menu!\n")
+        summary_menu()
+    elif user_input == 3:
+        return 0
+        #main_menu_valid(False)
+
+def summary_menu():
+    user_input = error_handling_int_plus(['Generate Summary by Date and/or Piece','Generate Summary of Last Session',
+                                          'Return to Data Main Menu'],'\nOption> ')
+    if user_input == 1:
+        summary_by_parameter()
+    elif user_input == 2:
+        generate_report_last_session(user_csv)
+        summary_menu()
+    elif user_input == 3:
+        data_main_menu()
+
+def summary_by_parameter():
+
+    print('Would you like to filter by date?')
+    date_choice = error_handling_int_plus(['Yes','No'], 'Option> ')
+    if date_choice == 1:
+        starting_date = get_desired_date('\nEnter the earliest date you want:')
+        ending_date = get_desired_date('\nEnter the latest date you want:')
+    else:
+        starting_date = '0000-00-01'
+        ending_date = '9999-99-98'
+
+    print('Would you like to filter by piece?')
+    piece_choice = error_handling_int_plus(['Yes','No'], 'Option> ')
+    if piece_choice == 1:
+        piece_filter = piece_retrieval(user_csv,activity_define=False)
+    else:
+        piece_filter = ""
+
+    generate_report_by_parameter(starting_date,ending_date,piece_filter)
+
+    summary_menu()
+
+
+def graph_menu():
+    user_choice = error_handling_int_plus(['View Graph of Time per Date/Piece','View Graphs of Attempts','Return to Data Main Menu'],'Option> ')
+    if user_choice == 1:
+        graph_one_bar_menu()
+    elif user_choice == 2:
+        graph_three_bar_menu()
+
+def graph_one_bar_menu():
+    user_choice = error_handling_int_plus(['Analyze by Pieces','Analyze by Date'],'Option> ')
+    if user_choice == 1:
+        create_bar_one_bar(retrieve_item('Piece'),retrieve_thing_by_structure(retrieve_item('Piece'),'Piece','Time'),'Piece','Time')
+    if user_choice == 2:
+        create_bar_one_bar(retrieve_item('Date'),retrieve_thing_by_structure(retrieve_item('Date'),'Date','Time'),'Date','Time')
+
+    graph_menu()
+
+def graph_three_bar_menu():
+    user_choice = error_handling_int_plus(['Analyze by Pieces', 'Analyze by Date'], 'Option> ')
+    if user_choice == 1:
+        create_three_bar(
+            retrieve_item('Piece'),
+            retrieve_thing_by_structure_not_time(retrieve_item("Piece"), 'Piece', 'SuccessfulAttempts'),
+            retrieve_thing_by_structure_not_time(retrieve_item('Piece'), 'Piece', 'UnsuccessfulAttempts'),
+            retrieve_thing_by_structure_not_time(retrieve_item('Piece'), 'Piece', 'NeutralAttempts'),
+            retrieve_thing_by_structure_not_time(retrieve_item('Piece'), 'Piece', 'AttemptsTotal'),
+            'Successful', 'Unsuccessful', 'Unfocused', 'Piece')
+    if user_choice == 2:
+        create_three_bar(
+            retrieve_item('Date'),
+            retrieve_thing_by_structure_not_time(retrieve_item("Date"), 'Date', 'SuccessfulAttempts'),
+            retrieve_thing_by_structure_not_time(retrieve_item('Date'), 'Date', 'UnsuccessfulAttempts'),
+            retrieve_thing_by_structure_not_time(retrieve_item('Date'), 'Date', 'NeutralAttempts'),
+            retrieve_thing_by_structure_not_time(retrieve_item('Date'), 'Date', 'AttemptsTotal'),
+            'Successful', 'Unsuccessful', 'Unfocused', 'Date')
+    graph_menu()
+
+data_main_menu()

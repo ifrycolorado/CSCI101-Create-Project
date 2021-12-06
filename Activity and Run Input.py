@@ -220,17 +220,18 @@ def run_start_measures():
     start_measure = 'a'
     end_measure = 'a'
 
-    error_handling_int("what measure are we starting at?> ",start_measure)
+    start_measure = error_handling_int("What measure are we starting at?> ",start_measure)
 
     measure_list.append(start_measure)
 
-    error_handling_int("What measure are we ending at?> ",end_measure)
+    end_measure = error_handling_int("What measure are we ending at?> ",end_measure)
 
     measure_list.append(end_measure)
 
     measure_list.sort()
 
     Run_Dict['Sections'] = measure_list
+    print(Run_Dict['Sections'])
 
     run_start_tempos()
 
@@ -522,6 +523,7 @@ def error_handling_int(message,variable):
         except ValueError:
             print()
             print("Please enter a number")
+    return variable
 
 def error_handling_int_plus(message_list,message):
     variable_dummy = 0
@@ -543,5 +545,8 @@ def error_handling_int_plus(message_list,message):
     return variable
 
 def seconds_to_minutes(seconds):
-    minutes = seconds // 60
-    return minutes
+    just_minutes = seconds // 60
+    just_seconds = seconds % 60
+    return round((just_minutes + just_seconds/60),1)
+
+run_start_measures()

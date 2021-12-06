@@ -36,3 +36,5 @@ Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,Unsu
 2021-11-30,Activity,24.94,Testing stuff,These are goals,"[[20, 40], [40, 50]]","[50, 70]",10,7,1,2,These are also relfections,9
 2021-12-01,Run,16.09,Retry,None,"[90, 100]",110,17,11,3,3,"By printing things afterwards, it's weird",10
 2021-12-01,Activity,81.45,Retry,Retrying things once more,"[[90, 100]]",[110],17,11,3,3,It worked maybe,10
+2021-12-05,Run,20.07,In CS,None,"[125, 130]",90,8,7,1,0,Reflect,11
+2021-12-05,Activity,55.36,In CS,Set some goals,"[[125, 130]]",[90],8,7,1,0,Reflections,11
