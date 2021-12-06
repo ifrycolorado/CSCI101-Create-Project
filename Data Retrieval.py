@@ -338,6 +338,8 @@ def data_main_menu():
         return 0
         #main_menu_valid(False)
 
+
+# Summaries
 def summary_menu():
     user_input = error_handling_int_plus(['Generate Summary by Date and/or Piece','Generate Summary of Last Session',
                                           'Return to Data Main Menu'],'\nOption> ')
@@ -371,7 +373,7 @@ def summary_by_parameter():
 
     summary_menu()
 
-
+# Graphs
 def graph_menu():
     user_choice = error_handling_int_plus(['View Graph of Time per Date/Piece','View Graphs of Attempts','Return to Data Main Menu'],'Option> ')
     if user_choice == 1:
