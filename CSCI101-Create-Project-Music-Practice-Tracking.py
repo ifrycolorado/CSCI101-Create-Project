@@ -404,7 +404,7 @@ def candy_tracker(activity_goal):
 
     print(f"\tTotal Attempts: {TotalAttempts}")
     if TotalAttempts > 0:
-        print(f'\tSuccessful Attempts: {SuccessfulAttempts} ({round(SuccessfulAttempts/TotalAttempts,2) * 100}%)')
+        print(f'\tSuccessful Attempts: {SuccessfulAttempts} ({(round(SuccessfulAttempts/TotalAttempts,2) * 100):.1f}%)')
 
     # REFLECTION
     run_reflection = input("\nAny thoughts on that run? (Press enter to bypass)> ")
@@ -412,7 +412,7 @@ def candy_tracker(activity_goal):
         run_reflection = "None"
     Run_Dict['Reflection'] = run_reflection
 
-    from_run_to_session()
+    from_run_to_session
 
 def from_run_to_session():
 
@@ -453,8 +453,6 @@ def activity_end():
     if len(act_reflection) == 0:
         act_reflection = "None"
     Activity_Dict['Reflection'] = act_reflection
-
-    print(f"Activity Dict: {Activity_Dict}")
 
     # ADD TO CSV
     act_testing_frame = pd.DataFrame(Activity_Dict)
@@ -528,7 +526,7 @@ def generate_report_last_session(last=True,master_indices=[]):
                     print(f"\t\tTotal Attempts: {dfp.iloc[lower_index]['AttemptsTotal']}")
                     if dfp.iloc[lower_index]['AttemptsTotal'] != 0:
                         print(f"\t\t\tSuccessful Attempts: {dfp.iloc[lower_index]['SuccessfulAttempts']} "
-                              f"({round((dfp.iloc[lower_index]['SuccessfulAttempts']) / (dfp.iloc[lower_index]['AttemptsTotal']), 3) * 100}%)")
+                              f"({(round((dfp.iloc[lower_index]['SuccessfulAttempts']) / (dfp.iloc[lower_index]['AttemptsTotal']), 3) * 100):.1f}%)")
                     print(f"\t\tReflection: {dfp.iloc[lower_index]['Reflection']}")
                     print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[lower_index]['Time'])}")
                     counter += 1
@@ -544,7 +542,7 @@ def generate_report_last_session(last=True,master_indices=[]):
                     print(f"\t\tSections: {dfp.iloc[lower_index]['Sections']}")
                     print(f"\t\tTotal Attempts: {dfp.iloc[lower_index]['AttemptsTotal']}")
                     print(f"\t\t\tSuccessful Attempts: {dfp.iloc[lower_index]['SuccessfulAttempts']} "
-                          f"({round((dfp.iloc[lower_index]['SuccessfulAttempts'])/(dfp.iloc[lower_index]['AttemptsTotal']),3)*100}%)")
+                          f"({(round((dfp.iloc[lower_index]['SuccessfulAttempts'])/(dfp.iloc[lower_index]['AttemptsTotal']),3)*100):.1f}%)")
                     print(f"\t\tReflection: {dfp.iloc[lower_index]['Reflection']}")
                     print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[lower_index]['Time'])}")
                     counter += 1

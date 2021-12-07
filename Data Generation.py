@@ -30,7 +30,7 @@ random_activity_reflection_list = ['This piece felt good overall','Watch out for
                                    'I wish there was more musical markings, go back and add in more phrasings',
                                    'These techniques are difficult, go back and count through entire piece']
 
-this_date = '2021-12-05'
+this_date = '2021-11-28'
 
 Activity_Dict = {
     'Date': '',
@@ -107,6 +107,9 @@ def activity_start():
 
     # SETTING TYPE
     Activity_Dict['Type'] = 'Activity'
+
+    Activity_Dict['Tempos'] = []
+    Activity_Dict['Sections'] = []
 
     # SETTING PIECE
     current_piece = random_piece_list[random.randint(0,len(random_piece_list)-1)]
