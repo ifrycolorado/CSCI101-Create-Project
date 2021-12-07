@@ -411,3 +411,6 @@ def graph_three_bar_menu():
     graph_menu()
 
 data_main_menu()
+
+Activity Dict: {'Date': '2021-12-06', 'Type': 'Activity', 'Time': 29.56, 'Piece': 'Them Lofi Beats', 'Goals': 'None', 'Sections': [[70, 90]], 'Tempos': [100], 'AttemptsTotal': 2, 'SuccessfulAttempts': 2, 'UnsuccessfulAttempts': 0, 'NeutralAttempts': 0, 'Reflection': 'Reflect', 'Session': 14}
+Activity Dict: {'Date': '2021-12-06', 'Type': 'Activity', 'Time': 14.36, 'Piece': 'In CS', 'Goals': 'Goals', 'Sections': [[70, 80]], 'Tempos': [100, 90], 'AttemptsTotal': 4, 'SuccessfulAttempts': 4, 'UnsuccessfulAttempts': 0, 'NeutralAttempts': 0, 'Reflection': 'Reflect', 'Session': 14}

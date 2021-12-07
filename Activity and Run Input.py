@@ -1,10 +1,26 @@
-# Reference: Documentation on adding lists to DataFrames https://stackoverflow.com/questions/26483254/python-pandas-insert-list-into-a-cell
+#  Isaac Fry
+#  CSCI 101 Section G
+#  Music Practice Tracker
+#  Professor Megan Shapiro
+
+# references: datetime documentation https://docs.python.org/3/library/datetime.html
 # references: bar graph documentation https://matplotlib.org/stable/gallery/lines_bars_and_markers/barchart.html
 # references: constrained layout docs: https://matplotlib.org/stable/tutorials/intermediate/constrainedlayout_guide.html
-# references: plt.setp rotation https://stackoverflow.com/questions/31372953/plt-setp-alternative-for-subplots-or-how-to-set-text-rotation-on-x-axis-for-subp
+# references: matplot plt.setp rotation https://stackoverflow.com/questions/31372953/plt-setp-alternative-for-subplots-or-how-to-set-text-rotation-on-x-axis-for-subp
+# references: matplot axes ticks https://matplotlib.org/3.1.1/api/_as_gen/matplotlib.axes.Axes.set_ylabel.html
+# references: matplot three bars https://www.tutorialspoint.com/matplotlib/matplotlib_bar_plot.htm
 # references: date checking from Python Docs https://docs.python.org/3/library/datetime.html
 # references: making dictionaries subscriptable https://www.kite.com/python/answers/how-to-index-a-dictionary-in-python
-# FIXME random encouragements
+# references: datetime library https://docs.python.org/3/library/datetime.html
+# references: pandas docs https://pandas.pydata.org/docs/reference/api/pandas.read_csv.html
+# references: pandas .astype() https://www.geeksforgeeks.org/python-pandas-dataframe-astype/
+# references: pandas guide Udemy course by Jose Portilla https://www.udemy.com/course/python-for-data-science-and-machine-learning-bootcamp/#instructor-1
+# references: pandas using lists in dataframe https://towardsdatascience.com/dealing-with-list-values-in-pandas-dataframes-a177e534f173
+# references: pandas accessing index for specific condition https://www.kite.com/python/answers/how-to-get-the-indices-of-rows-in-a-pandas-dataframe-which-satisfy-a-given-condition-in-python
+# references: adding lists to DataFrames https://stackoverflow.com/questions/26483254/python-pandas-insert-list-into-a-cell
+# references: pandas read_csv https://towardsdatascience.com/how-to-read-csv-file-using-pandas-ab1f5e7e7b58
+# references: pandas read_csv https://datascienceparichay.com/article/pandas-append-dataframe-to-existing-csv/
+# references: pandas indexing https://pythonexamples.org/get-index-of-pandas-dataframe/
 
 import datetime
 import time
@@ -197,6 +213,10 @@ def activity_start():
     # SETTING TYPE
     Activity_Dict['Type'] = 'Activity'
 
+    Activity_Dict['Sections'] = []
+
+    Activity_Dict['Tempos'] = []
+
     # TIME SET AFTER ALL RUNS COMPLETED
     Activity_Dict['Time'] = time.time()
 
@@ -217,6 +237,8 @@ def activity_start():
     run_start_measures()
 
 def run_start_measures():
+
+    print("\nYou have now started a run")
 
     # RESET TO BE APPENDED TO
     Run_Dict['Sections'] = []
@@ -251,7 +273,7 @@ def run_start_tempos():
     # PIECE
     Run_Dict['Piece'] = Activity_Dict['Piece']
 
-    # ACTIVITY SECTONS
+    # ACTIVITY SECTIONS
     Activity_Dict['Sections'].append(Run_Dict['Sections'])
 
     # TEMPOS
@@ -398,6 +420,7 @@ def from_run_to_session():
     run_testing_frame = pd.DataFrame(Run_Dict)
 
     dummy_sections = Run_Dict['Sections']
+
     dummy_tempos = Run_Dict['Tempos']
     run_testing_frame['Sections'] = run_testing_frame['Sections'].astype('object')
     run_testing_frame['Tempos'] = run_testing_frame['Tempos'].astype('object')
@@ -430,6 +453,8 @@ def activity_end():
     if len(act_reflection) == 0:
         act_reflection = "None"
     Activity_Dict['Reflection'] = act_reflection
+
+    print(f"Activity Dict: {Activity_Dict}")
 
     # ADD TO CSV
     act_testing_frame = pd.DataFrame(Activity_Dict)
@@ -485,6 +510,7 @@ def generate_report_last_session(last=True,master_indices=[]):
         if not last:
             print(f"Date: {dfp.iloc[higher_index]['Date']}")
         print(f"Piece: {dfp.iloc[higher_index]['Piece']}")
+        print(f"Sections: {dfp.iloc[higher_index]['Sections']}")
         print(f"Overall reflection: {dfp.iloc[higher_index]['Reflection']}")
         print(f"Time spent (in minutes): {seconds_to_minutes(dfp.iloc[higher_index]['Time'])}")
 
@@ -500,8 +526,9 @@ def generate_report_last_session(last=True,master_indices=[]):
                     print(f"\t\tTempos: {dfp.iloc[lower_index]['Tempos']}")
                     print(f"\t\tSections: {dfp.iloc[lower_index]['Sections']}")
                     print(f"\t\tTotal Attempts: {dfp.iloc[lower_index]['AttemptsTotal']}")
-                    print(f"\t\t\tSuccessful Attempts: {dfp.iloc[lower_index]['SuccessfulAttempts']} "
-                          f"({round((dfp.iloc[lower_index]['SuccessfulAttempts']) / (dfp.iloc[lower_index]['AttemptsTotal']), 3) * 100}%)")
+                    if dfp.iloc[lower_index]['AttemptsTotal'] != 0:
+                        print(f"\t\t\tSuccessful Attempts: {dfp.iloc[lower_index]['SuccessfulAttempts']} "
+                              f"({round((dfp.iloc[lower_index]['SuccessfulAttempts']) / (dfp.iloc[lower_index]['AttemptsTotal']), 3) * 100}%)")
                     print(f"\t\tReflection: {dfp.iloc[lower_index]['Reflection']}")
                     print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[lower_index]['Time'])}")
                     counter += 1
@@ -598,8 +625,6 @@ def retrieve_thing_by_structure(array_1, structure, thing):
             if index in index_list_activity:
                 master_indices.append(index)
 
-        print(master_indices)
-
         time_sum = 0
         for index in master_indices:
             minutes = seconds_to_minutes(float(dfp.iloc[index][thing]))
@@ -614,18 +639,20 @@ def time_by_piece_across_date(piece):
     index_list_piece = list(dfp.index[dfp['Piece'] == piece])
     index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
     list_dates = list(set(dfp['Date']))
+    list_dates.sort()
 
     master_date_indices = []
 
     for date in list_dates:
-        master_date_indices.append(list(dfp.index[dfp['Date'] == date]))
+        new_list = list(dfp.index[dfp['Date'] == date])
+        master_date_indices.append(new_list)
 
     master_master_indices = []
 
     for item_list in master_date_indices:
         new_list = []
         for date_index in item_list:
-            if date_index in index_list_activity:
+            if date_index in index_list_activity and date_index in index_list_piece:
                 new_list.append(date_index)
         master_master_indices.append(new_list)
 
@@ -663,7 +690,6 @@ def retrieve_thing_by_structure_not_time(array_1, structure, thing):
     return array_2
 
 
-# FIXME taken from matplotlib documentation
 def create_bar_one_bar(array_x, array_y, array_x_name, array_y_name):
     width = 0.35
     x = np.arange(len(array_x))
@@ -724,7 +750,7 @@ def generate_report_by_parameter(start_input="0000-00-00", end_input='9999-99-99
         end_date = validity_of_date(end_date=end_input, end=True)
         index_list_date_end = list(dfp.index[dfp['Date'] == end_date])[-1]
     if piece != '':
-        piece_list = list(dfp.index[dfp['Piece'] == piece])[1:]
+        piece_list = list(dfp.index[dfp['Piece'] == piece])
     elif piece == '':
         piece_list = list(range(len(dfp)))
 

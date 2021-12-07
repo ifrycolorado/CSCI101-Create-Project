@@ -41,3 +41,10 @@ Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,Unsu
 2021-12-06,Run,30.52,New Activity,None,"[90, 100]",80,10,7,1,2,None,12
 2021-12-06,Activity,409.15,New Activity,These are goals,"[[90, 100]]",[80],10,7,1,2,Nothing,12
 2021-12-06,Run,10.13,Retry,None,"[90, 100]",90,8,6,2,0,None,13
+2021-12-06,Run,1.24,Them Lofi Beats,None,"[70, 90]",100,2,2,0,0,None,14
+2021-12-06,Activity,29.56,Them Lofi Beats,None,"[[70, 90]]",[100],2,2,0,0,Reflect,14
+2021-12-06,Run,0.84,In CS,None,"[70, 80]",90,2,2,0,0,None,14
+2021-12-06,Run,0.66,Last time,None,"[70, 80]",90,2,2,0,0,No,15
+2021-12-06,Activity,20.22,Last time,ALSKJG,"[[70, 80]]",[90],2,2,0,0,SDFLKJ,15
+2021-12-06,Run,0.76,YAY,None,"[42, 80]",115,2,2,0,0,None,15
+2021-12-06,Activity,30.74,YAY,Goals,"[[42, 80]]",[115],4,4,0,0,ALSKFJ,15

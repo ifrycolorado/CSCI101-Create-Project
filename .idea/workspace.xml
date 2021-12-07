@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7ff7626-698b-4c5d-9143-0fccc7ee5a53" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data Generation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Activity and Run Input.py" beforeDir="false" afterPath="$PROJECT_DIR$/Activity and Run Input.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Example.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Example.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Isaac.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Isaac.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -177,7 +177,7 @@
       <workItem from="1638463922533" duration="2374000" />
       <workItem from="1638566309698" duration="5565000" />
       <workItem from="1638655028771" duration="25950000" />
-      <workItem from="1638814377455" duration="13652000" />
+      <workItem from="1638814377455" duration="18701000" />
     </task>
     <servers />
   </component>
@@ -196,8 +196,19 @@
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Activity and Run Input.py</url>
+          <line>654</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638852996928" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638858726263" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$CSV_Reading_Backwards.coverage" NAME="CSV Reading Backwards Coverage Results" MODIFIED="1638291400668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Data_Retrieval.coverage" NAME="Data Retrieval Coverage Results" MODIFIED="1638765417999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Example_creation.coverage" NAME="Example creation Coverage Results" MODIFIED="1638826712725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

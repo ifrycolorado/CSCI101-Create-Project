@@ -104,3 +104,7 @@ Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,Unsu
 2021-12-05,Run,253,Scales,None,"[114, 196]",68,2,0,0,1,"Finally made progress, keep tempo up next time",7
 2021-12-05,Run,229,Scales,None,"[114, 196]",110,12,2,3,6,"This new section was difficult, map beforehand",7
 2021-12-05,Activity,4655,Scales,Play through peice and map,"[[233, 292], [233, 292], [233, 292], [161, 237], [161, 237], [161, 237], [118, 219], [118, 219], [64, 66], [64, 66], [164, 246], [164, 246], [114, 196], [114, 196]]","[110, 76, 72, 136, 155, 145, 108, 91, 110, 138, 158, 48, 68, 110]",54,12,12,16,"These techniques are difficult, go back and count through entire piece",7
+2021-12-06,Run,1.44,Strive (Trevino),None,"[90, 100]",110,0,0,0,0,1,8
+2021-12-06,Activity,78.14,Strive (Trevino),These are goals that will appear for the entire activity,"[[90, 100]]",[110],0,0,0,0,Reflecting,8
+2021-12-06,Run,17.12,Warming up,None,"[90, 110]",90,6,4,1,1,These are thoughts about this specific run,8
+2021-12-06,Activity,82.34,Warming up,These are goals that will remind the user what they should accomplish,"[[90, 100], [90, 110]]","[110, 90]",6,4,1,1,These are reflections about all of the practicing on this piece this time,8
