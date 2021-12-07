@@ -38,3 +38,6 @@ Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,Unsu
 2021-12-01,Activity,81.45,Retry,Retrying things once more,"[[90, 100]]",[110],17,11,3,3,It worked maybe,10
 2021-12-05,Run,20.07,In CS,None,"[125, 130]",90,8,7,1,0,Reflect,11
 2021-12-05,Activity,55.36,In CS,Set some goals,"[[125, 130]]",[90],8,7,1,0,Reflections,11
+2021-12-06,Run,30.52,New Activity,None,"[90, 100]",80,10,7,1,2,None,12
+2021-12-06,Activity,409.15,New Activity,These are goals,"[[90, 100]]",[80],10,7,1,2,Nothing,12
+2021-12-06,Run,10.13,Retry,None,"[90, 100]",90,8,6,2,0,None,13

@@ -83,7 +83,7 @@ def main_menu():
         data.head()
         dfp = pd.DataFrame(data)
 
-        print(f"\nWelcome back {user_profile}!")
+        print(f"\nWelcome back, {user_profile}!")
 
         # set creation_value
         creation_value = False
@@ -104,9 +104,7 @@ def account_creation(user_profile):
 
     # set a variable for branches if this is a new account
     creation_value = True
-
-    print("What would you like this account to be named?")
-    account_name = input("Name> ")
+    account_name = user_profile
     print()
 
     # Create new account
@@ -171,10 +169,10 @@ def session_start(value):
 
         choice = 0
         while choice != ('1' or '2'):
-            print("Would you like to see a report of your last session?\n[1] Yes\n[2] No")
+            print("\nWould you like to see a report of your last session?\n[1] Yes\n[2] No")
             choice = input("Choice> ")
             if choice == "1":
-                generate_report_last_session()
+                generate_report_last_session(last=True)
                 activity_start()
             elif choice == "2":
                 activity_start()
@@ -186,7 +184,7 @@ def session_start(value):
 
 def activity_start():
 
-    print("You started a new activity")
+    print("\nYou started an instance of a new activity")
     print()
 
     # OBTAINING DATE
@@ -216,8 +214,6 @@ def activity_start():
 
     # REFLECTIONS SET LATER
 
-    print('We will now start an individual run')
-
     run_start_measures()
 
 def run_start_measures():
@@ -230,7 +226,7 @@ def run_start_measures():
     start_measure = 'a'
     end_measure = 'a'
 
-    start_measure = error_handling_int("What measure are we starting at?> ",start_measure)
+    start_measure = error_handling_int("\nWhat measure are we starting at?> ",start_measure)
 
     measure_list.append(start_measure)
 
@@ -291,8 +287,9 @@ def candy_tracker(activity_goal):
     candy_length_dummy = 0
 
     # error handling input
+    print('\nTo complete a run, you must move your tokens from the right to the left and back')
     while candy_length_dummy != 1:
-        candy_length = input("Enter amount of tokens between 1 and 16> ")
+        candy_length = input(f"Enter amount of tokens ({Notes_Dict['quarter']}) between 1 and 16> ")
         print()
         try:
             if int(candy_length) in range(1,17):
@@ -307,8 +304,9 @@ def candy_tracker(activity_goal):
     candies_left_standard = Notes_Dict['quarter'] * candy_length
 
     # error handling for difficulty
+    print('Would you like to practice where your tokens reset to the left on an unsuccessful run?')
     difficulty = error_handling_int_plus(['Yes','No'],
-                                         'Would you like to practice where your tokens reset on an unsuccessful run?')
+                                         'Option> ')
 
     if difficulty == 1:
         difficulty_value = True
@@ -355,7 +353,10 @@ def candy_tracker(activity_goal):
                     running_total -= 1
             TotalAttempts += 1
         else:
-            print("Please enter a valid number")
+            if user_input == '1':
+                print()
+            else:
+                print("Please enter a valid number")
 
         if running_total == candy_length * 2:
             user_input = "1"
@@ -377,13 +378,14 @@ def candy_tracker(activity_goal):
     Run_Dict['NeutralAttempts'] = NeutralAttempts
     Activity_Dict['NeutralAttempts'] += NeutralAttempts
 
-    print(f" Total Attempts: {TotalAttempts}")
-    print(f' Successful Attempts: {SuccessfulAttempts}')
+    print(f"Total Time in Minutes: {seconds_to_minutes(run_stop_practice - run_start_practice):.2f}")
 
-    print(f"Total Time in Seconds: {(run_stop_practice - run_start_practice):.2f}")
+    print(f"\tTotal Attempts: {TotalAttempts}")
+    if TotalAttempts > 0:
+        print(f'\tSuccessful Attempts: {SuccessfulAttempts} ({round(SuccessfulAttempts/TotalAttempts,2) * 100}%)')
 
     # REFLECTION
-    run_reflection = input("Any thoughts on that run? (Press enter to bypass)> ")
+    run_reflection = input("\nAny thoughts on that run? (Press enter to bypass)> ")
     if len(run_reflection) == 0:
         run_reflection = "None"
     Run_Dict['Reflection'] = run_reflection
@@ -405,8 +407,8 @@ def from_run_to_session():
 
     run_testing_frame[0:1].to_csv(user_csv, mode='a', index=False, header=False)
 
-    print("Way to go!")
-    print("What would you like to do next?")
+    print(f"\n{Notes_Dict[random_note_pick()]} Way to go!")
+    print("\nWhat would you like to do next?")
     user_option = error_handling_int_plus(["Start a new piece or end session",'Keep running this section at different tempo',
           'Keep running this piece with a different section'],'Option> ')
     if user_option == 1:
@@ -459,34 +461,66 @@ def determine_last_session(user_profile):
     last_session = int(dfp.iloc[last_index]['Session'])
     return last_session
 
-def generate_report_last_session():
+def generate_report_last_session(last=True,master_indices=[]):
 
     #establish empty lists
     activity_indices = []
     run_indices = []
+    if last:
+        # cycle to get indices (able to put activities in front of runs)
+        for index in list(dfp.index[dfp['Session'] == determine_last_session(user_csv)]):
+            if dfp.iloc[index]['Type'] == 'Activity':
+                activity_indices.append(index)
+            elif dfp.iloc[index]['Type'] == 'Run':
+                run_indices.append(index)
+    if not last:
+        for index in master_indices:
+            if dfp.iloc[index]['Type'] == 'Activity':
+                activity_indices.append(index)
+            elif dfp.iloc[index]['Type'] == 'Run':
+                run_indices.append(index)
 
-    # cycle to get indices (able to put activities in front of runs)
-    for index in list(dfp.index[dfp['Session'] == determine_last_session(user_csv)]):
-        if dfp.iloc[index]['Type'] == 'Activity':
-            activity_indices.append(index)
-        elif dfp.iloc[index]['Type'] == 'Run':
-            run_indices.append(index)
+    for activity_index,higher_index in enumerate(activity_indices):
+        print()
+        if not last:
+            print(f"Date: {dfp.iloc[higher_index]['Date']}")
+        print(f"Piece: {dfp.iloc[higher_index]['Piece']}")
+        print(f"Overall reflection: {dfp.iloc[higher_index]['Reflection']}")
+        print(f"Time spent (in minutes): {seconds_to_minutes(dfp.iloc[higher_index]['Time'])}")
 
-    for index in activity_indices:
-        if dfp.iloc[index]["Type"] == 'Activity':
-            print()
-            print(f"Piece: {dfp.iloc[index]['Piece']}")
-            print(f"Overall reflection: {dfp.iloc[index]['Reflection']}")
-            print(f"Time spent (in minutes): {seconds_to_minutes(dfp.iloc[index]['Time'])}")
+        counter = 0
 
-        for counter,index in enumerate(run_indices):
-            if dfp.iloc[index]["Type"] == 'Run':
-                print()
-                print(f"\tAction type: {dfp.iloc[index]['Type']}_{counter}")
-                print(f"\t\tTempos: {dfp.iloc[index]['Tempos']}")
-                print(f"\t\tSections: {dfp.iloc[index]['Sections']}")
-                print(f"\t\tReflection: {dfp.iloc[index]['Reflection']}")
-                print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[index]['Time'])}")
+        for lower_index in run_indices:
+            if activity_index == 0:
+                if lower_index >= higher_index:
+                    break
+                else:
+                    print()
+                    print(f"\t{dfp.iloc[lower_index]['Type']} {counter + 1}")
+                    print(f"\t\tTempos: {dfp.iloc[lower_index]['Tempos']}")
+                    print(f"\t\tSections: {dfp.iloc[lower_index]['Sections']}")
+                    print(f"\t\tTotal Attempts: {dfp.iloc[lower_index]['AttemptsTotal']}")
+                    print(f"\t\t\tSuccessful Attempts: {dfp.iloc[lower_index]['SuccessfulAttempts']} "
+                          f"({round((dfp.iloc[lower_index]['SuccessfulAttempts']) / (dfp.iloc[lower_index]['AttemptsTotal']), 3) * 100}%)")
+                    print(f"\t\tReflection: {dfp.iloc[lower_index]['Reflection']}")
+                    print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[lower_index]['Time'])}")
+                    counter += 1
+            else:
+                if lower_index >= higher_index:
+                    break
+                elif lower_index <= activity_indices[activity_index - 1]:
+                    continue
+                else:
+                    print()
+                    print(f"\t{dfp.iloc[lower_index]['Type']} {counter+1}")
+                    print(f"\t\tTempos: {dfp.iloc[lower_index]['Tempos']}")
+                    print(f"\t\tSections: {dfp.iloc[lower_index]['Sections']}")
+                    print(f"\t\tTotal Attempts: {dfp.iloc[lower_index]['AttemptsTotal']}")
+                    print(f"\t\t\tSuccessful Attempts: {dfp.iloc[lower_index]['SuccessfulAttempts']} "
+                          f"({round((dfp.iloc[lower_index]['SuccessfulAttempts'])/(dfp.iloc[lower_index]['AttemptsTotal']),3)*100}%)")
+                    print(f"\t\tReflection: {dfp.iloc[lower_index]['Reflection']}")
+                    print(f"\t\tTime spent (in minutes): {seconds_to_minutes(dfp.iloc[lower_index]['Time'])}")
+                    counter += 1
 
     print()
 
@@ -504,16 +538,16 @@ def piece_retrieval(user_csv,activity_define=True):
                     previous_piece.append(line[3])
 
     for index,piece in enumerate(previous_piece):
-        print(f"[{index}] {piece}")
+        print(f"[{index+1}] {piece}")
 
     if activity_define:
-        print(f"[{len(previous_piece)}] Define a new activity")
+        print(f"[{len(previous_piece)+1}] Define a new activity")
 
     # error handling
     dummy = 0
     while dummy != 1:
         try:
-            piece_selection = int(input("Selection> "))
+            piece_selection = int(input("Selection> ")) - 1
             if piece_selection == len(previous_piece):
                 user_piece = input("Activity name> ")
             else:
@@ -535,13 +569,6 @@ def error_handling_int(message,variable):
             print()
             print("Please enter a number")
     return variable
-
-
-def seconds_to_minutes(seconds):
-    just_minutes = seconds // 60
-    just_seconds = seconds % 60
-    return round((just_minutes + just_seconds/60),1)
-
 #
 # DATA RETRIEVAL
 #
@@ -571,11 +598,45 @@ def retrieve_thing_by_structure(array_1, structure, thing):
             if index in index_list_activity:
                 master_indices.append(index)
 
+        print(master_indices)
+
         time_sum = 0
         for index in master_indices:
             minutes = seconds_to_minutes(float(dfp.iloc[index][thing]))
             time_sum += minutes
         array_2 = append(array_2, time_sum)
+
+    return array_2
+
+def time_by_piece_across_date(piece):
+    array_2 = np.array([])
+
+    index_list_piece = list(dfp.index[dfp['Piece'] == piece])
+    index_list_activity = list(dfp.index[dfp['Type'] == 'Activity'])
+    list_dates = list(set(dfp['Date']))
+
+    master_date_indices = []
+
+    for date in list_dates:
+        master_date_indices.append(list(dfp.index[dfp['Date'] == date]))
+
+    master_master_indices = []
+
+    for item_list in master_date_indices:
+        new_list = []
+        for date_index in item_list:
+            if date_index in index_list_activity:
+                new_list.append(date_index)
+        master_master_indices.append(new_list)
+
+    for item_list in master_master_indices:
+        time_sum = 0
+        if len(item_list) > 0:
+            for index in item_list:
+                time_sum += seconds_to_minutes(float(dfp.iloc[index]['Time']))
+            array_2 = append(array_2,time_sum)
+        else:
+            array_2 = append(array_2,0)
 
     return array_2
 
@@ -614,7 +675,7 @@ def create_bar_one_bar(array_x, array_y, array_x_name, array_y_name):
     # set axis names and labels
     ax.set_ylabel(array_y_name)
     ax.set_xlabel(array_x_name)
-    ax.set_title(f"{array_x_name} by {array_y_name}")
+    ax.set_title(f"{array_y_name} by {array_x_name}")
     ax.set_xticks(x, array_x)
 
     ax.bar_label(rects1, padding=3)
@@ -674,14 +735,7 @@ def generate_report_by_parameter(start_input="0000-00-00", end_input='9999-99-99
             if heading_index == index:
                 master_indices.append(heading_index)
 
-    for index in master_indices:
-        for index_lowest in range(len(user_heading_list)):
-            if index_lowest == 0:
-                print(f"{user_heading_list[index_lowest]}: {dfp.iloc[index][top_heads[index_lowest]]}")
-            else:
-                print(f"\t{user_heading_list[index_lowest]}: {dfp.iloc[index][top_heads[index_lowest]]}")
-        print()
-
+    generate_report_last_session(False,master_indices=master_indices)
 
 # DATA BACKGROUND CALLS
 def validity_of_date(start_date='', end_date='', start=False, end=False):
@@ -768,7 +822,7 @@ def summary_menu():
     if user_input == 1:
         summary_by_parameter()
     elif user_input == 2:
-        generate_report_last_session()
+        generate_report_last_session(True)
         summary_menu()
     elif user_input == 3:
         data_main_menu()
@@ -799,7 +853,7 @@ def summary_by_parameter():
 # Graphs
 def graph_menu():
     user_choice = error_handling_int_plus(
-        ['View Graph of Time per Date/Piece', 'View Graphs of Attempts', 'Return to Data Main Menu'], 'Option> ')
+        ['View Graphs of Time per Date or Piece', 'View Graphs of Attempts', 'Return to Data Main Menu'], 'Option> ')
     if user_choice == 1:
         graph_one_bar_menu()
     elif user_choice == 2:
@@ -810,14 +864,17 @@ def graph_menu():
 
 
 def graph_one_bar_menu():
-    user_choice = error_handling_int_plus(['Analyze by Pieces', 'Analyze by Date'], 'Option> ')
+    user_choice = error_handling_int_plus(['Analyze Time by Pieces', 'Analyze Time by Date','Analyze Time by Date for 1 Piece'], 'Option> ')
     if user_choice == 1:
         create_bar_one_bar(retrieve_item('Piece'), retrieve_thing_by_structure(retrieve_item('Piece'), 'Piece', 'Time'),
-                           'Piece', 'Time')
+                           'Piece', 'Time (in Minutes)')
     if user_choice == 2:
         create_bar_one_bar(retrieve_item('Date'), retrieve_thing_by_structure(retrieve_item('Date'), 'Date', 'Time'),
-                           'Date', 'Time')
-
+                           'Date', 'Time (in Minutes)')
+    if user_choice == 3:
+        piece = piece_retrieval(user_csv,activity_define=False)
+        create_bar_one_bar(retrieve_item('Date'), time_by_piece_across_date(piece),
+                           'Date', f'Time (in Minutes) for {piece}')
     graph_menu()
 
 
