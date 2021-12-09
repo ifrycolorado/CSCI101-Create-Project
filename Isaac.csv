@@ -48,3 +48,12 @@ Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,Unsu
 2021-12-06,Activity,20.22,Last time,ALSKJG,"[[70, 80]]",[90],2,2,0,0,SDFLKJ,15
 2021-12-06,Run,0.76,YAY,None,"[42, 80]",115,2,2,0,0,None,15
 2021-12-06,Activity,30.74,YAY,Goals,"[[42, 80]]",[115],4,4,0,0,ALSKFJ,15
+2021-12-07,Run,1.82,Testing stuff,None,"[97, 104]",80,4,4,0,0,None,16
+2021-12-07,Run,25.82,Testing stuff,None,"[97, 104]",50,9,7,1,1,None,16
+2021-12-07,Activity,74.74,Testing stuff,Goalslkj,"[[97, 104], [97, 104]]","[80, 50]",13,11,1,1,Reflecting is cool,16
+2021-12-07,Run,7.56,In CS,None,"[90, 100]",160,11,9,2,0,Sure,16
+2021-12-07,Run,5.71,In CS,None,"[90, 120]",45,8,6,2,0,Coolio,16
+2021-12-07,Activity,64.26,In CS,More goals,"[[90, 100], [90, 120]]","[160, 45]",32,26,5,1,LASKJDFALSKFJ,16
+2021-12-07,Run,0.65,In CS,None,"[90, 110]",130,2,2,0,0,None,17
+2021-12-07,Run,1.22,In CS,None,"[90, 110]",400,2,2,0,0,Great,17
+2021-12-07,Activity,55.67,In CS,None,"[[90, 110], [90, 110]]","[130, 400]",4,4,0,0,Reflecting,17

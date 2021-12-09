@@ -1,0 +1,110 @@
+Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection,Session
+2021-11-27,Run,458,Astral Dance (Stout),None,"[46, 104]",48,6,1,2,2,"Ask my director about this part, definitely confusing",0
+2021-11-27,Run,408,Astral Dance (Stout),None,"[46, 104]",81,1,0,0,0,"Finally made progress, keep tempo up next time",0
+2021-11-27,Run,263,Astral Dance (Stout),None,"[39, 188]",79,1,0,0,0,I really should practice more,0
+2021-11-27,Activity,1129,Astral Dance (Stout),Practice performing,"[[46, 104], [46, 104], [39, 188]]","[48, 81, 79]",8,1,2,2,"Whoops, I forgot to practice",0
+2021-11-28,Run,232,Wilcoxon #52,None,"[48, 158]",79,3,0,2,0,"This new section was difficult, map beforehand",1
+2021-11-28,Run,570,Wilcoxon #52,None,"[48, 158]",115,6,4,0,1,I really should practice more,1
+2021-11-28,Run,595,Wilcoxon #52,None,"[48, 158]",159,3,1,1,0,I wish this was easier,1
+2021-11-28,Activity,1397,Wilcoxon #52,Refrain from giving up,"[[48, 158], [48, 158], [48, 158]]","[79, 115, 159]",12,5,3,1,"These techniques are difficult, go back and count through entire piece",1
+2021-11-28,Run,350,Warming up,None,"[129, 206]",156,1,0,0,0,"Ask my director about this part, definitely confusing",1
+2021-11-28,Run,189,Warming up,None,"[129, 206]",98,2,1,0,0,"Pain occurring in left hand, stretch more",1
+2021-11-28,Run,445,Warming up,None,"[129, 206]",98,1,0,0,0,"Pain occurring in left hand, stretch more",1
+2021-11-28,Run,199,Warming up,None,"[245, 273]",49,2,0,1,0,"Ask my director about this part, definitely confusing",1
+2021-11-28,Run,485,Warming up,None,"[245, 273]",112,1,0,0,0,"Pain occurring in left hand, stretch more",1
+2021-11-28,Run,379,Warming up,None,"[245, 273]",59,4,0,1,2,This section felt good,1
+2021-11-28,Activity,3444,Warming up,Develop coordination in left hand,"[[129, 206], [129, 206], [129, 206], [245, 273], [245, 273], [245, 273]]","[156, 98, 98, 49, 112, 59]",23,6,5,3,"Watch out for the middle section, warm up more beforehand",1
+2021-11-29,Run,250,Strive (Trevino),None,"[36, 280]",60,3,1,0,1,"Missed time signature multiple times, watch counting",2
+2021-11-29,Run,394,Strive (Trevino),None,"[36, 280]",49,1,0,0,0,"Peaking strain at tempo, work on technique",2
+2021-11-29,Run,274,Strive (Trevino),None,"[36, 280]",135,4,1,1,1,I really should practice more,2
+2021-11-29,Run,476,Strive (Trevino),None,"[116, 144]",89,4,2,1,0,"Ask my director about this part, definitely confusing",2
+2021-11-29,Run,466,Strive (Trevino),None,"[116, 144]",87,4,0,2,1,"Missed time signature multiple times, watch counting",2
+2021-11-29,Run,189,Strive (Trevino),None,"[116, 144]",109,1,0,0,0,"This new section was difficult, map beforehand",2
+2021-11-29,Activity,2049,Strive (Trevino),Refrain from giving up,"[[36, 280], [36, 280], [36, 280], [116, 144], [116, 144], [116, 144]]","[60, 49, 135, 89, 87, 109]",17,4,4,3,"These techniques are difficult, go back and count through entire piece",2
+2021-11-29,Run,285,Wilcoxon #52,None,"[33, 189]",105,2,1,0,0,I wish this was easier,2
+2021-11-29,Run,319,Wilcoxon #52,None,"[33, 189]",128,4,2,0,1,"Pain occurring in left hand, stretch more",2
+2021-11-29,Run,491,Wilcoxon #52,None,"[33, 189]",117,3,0,2,0,This section felt good,2
+2021-11-29,Activity,3144,Wilcoxon #52,Increase stick height,"[[33, 189], [33, 189], [33, 189]]","[105, 128, 117]",26,7,6,4,"These techniques are difficult, go back and count through entire piece",2
+2021-11-30,Run,489,Wilcoxon #52,None,"[64, 85]",42,4,1,1,1,"Current key signature was difficult, practice this scale more",3
+2021-11-30,Run,393,Wilcoxon #52,None,"[64, 85]",158,1,0,0,0,"This new section was difficult, map beforehand",3
+2021-11-30,Run,180,Wilcoxon #52,None,"[115, 189]",57,3,0,2,0,"Missed time signature multiple times, watch counting",3
+2021-11-30,Run,326,Wilcoxon #52,None,"[115, 189]",147,1,0,0,0,"Current key signature was difficult, practice this scale more",3
+2021-11-30,Run,454,Wilcoxon #52,None,"[115, 189]",99,5,1,2,1,Refrain from getting excited,3
+2021-11-30,Activity,1842,Wilcoxon #52,Increase tone throughout,"[[64, 85], [64, 85], [115, 189], [115, 189], [115, 189]]","[42, 158, 57, 147, 99]",14,2,5,2,"Whoops, I forgot to practice",3
+2021-11-30,Run,182,Scales,None,"[26, 135]",93,3,2,0,0,"Missed time signature multiple times, watch counting",3
+2021-11-30,Run,550,Scales,None,"[26, 135]",105,3,2,0,0,"This new section was difficult, map beforehand",3
+2021-11-30,Run,390,Scales,None,"[26, 135]",141,8,5,1,1,Refrain from getting excited,3
+2021-11-30,Run,490,Scales,None,"[250, 294]",85,1,0,0,0,"Ask my director about this part, definitely confusing",3
+2021-11-30,Run,486,Scales,None,"[250, 294]",156,4,0,2,1,"Peaking strain at tempo, work on technique",3
+2021-11-30,Activity,3940,Scales,Have fun,"[[26, 135], [26, 135], [26, 135], [250, 294], [250, 294]]","[93, 105, 141, 85, 156]",33,11,8,4,"These techniques are difficult, go back and count through entire piece",3
+2021-11-30,Run,449,Warming up,None,"[94, 97]",53,1,0,0,0,This section felt good,3
+2021-11-30,Run,463,Warming up,None,"[94, 97]",158,2,1,0,0,I really should practice more,3
+2021-11-30,Run,477,Warming up,None,"[94, 97]",65,3,2,1,0,"Current key signature was difficult, practice this scale more",3
+2021-11-30,Activity,5329,Warming up,Develop appreciation for classical music,"[[94, 97], [94, 97], [94, 97]]","[53, 158, 65]",39,14,9,4,Watch the time signature changes throughout,3
+2021-12-01,Run,343,Wilcoxon #52,None,"[224, 260]",57,3,0,1,1,"Current key signature was difficult, practice this scale more",4
+2021-12-01,Run,544,Wilcoxon #52,None,"[224, 260]",47,19,5,10,3,"Missed time signature multiple times, watch counting",4
+2021-12-01,Run,503,Wilcoxon #52,None,"[224, 260]",141,17,5,5,6,I wish this was easier,4
+2021-12-01,Activity,1390,Wilcoxon #52,Develop coordination in left hand,"[[224, 260], [224, 260], [224, 260]]","[57, 47, 141]",39,10,16,10,Watch the time signature changes throughout,4
+2021-12-01,Run,237,Astral Dance (Stout),None,"[37, 167]",124,3,1,1,0,I wish this was easier,4
+2021-12-01,Run,234,Astral Dance (Stout),None,"[37, 167]",155,1,0,0,0,"Current key signature was difficult, practice this scale more",4
+2021-12-01,Run,543,Astral Dance (Stout),None,"[37, 167]",85,9,2,4,2,"Ask my director about this part, definitely confusing",4
+2021-12-01,Run,283,Astral Dance (Stout),None,"[219, 248]",139,4,2,0,2,"Pain occurring in left hand, stretch more",4
+2021-12-01,Run,495,Astral Dance (Stout),None,"[219, 248]",148,1,0,0,0,"Current key signature was difficult, practice this scale more",4
+2021-12-01,Run,364,Astral Dance (Stout),None,"[219, 248]",61,1,0,0,0,I really should practice more,4
+2021-12-01,Run,303,Astral Dance (Stout),None,"[227, 259]",146,2,0,1,0,"Peaking strain at tempo, work on technique",4
+2021-12-01,Run,385,Astral Dance (Stout),None,"[227, 259]",78,8,0,2,5,"Current key signature was difficult, practice this scale more",4
+2021-12-01,Run,379,Astral Dance (Stout),None,"[227, 259]",87,4,2,0,1,"Finally made progress, keep tempo up next time",4
+2021-12-01,Activity,4613,Astral Dance (Stout),Increase tone throughout,"[[37, 167], [37, 167], [37, 167], [219, 248], [219, 248], [219, 248], [227, 259], [227, 259], [227, 259]]","[124, 155, 85, 139, 148, 61, 146, 78, 87]",72,17,24,20,"Watch out for the middle section, warm up more beforehand",4
+2021-12-03,Run,347,Prelude 3 (Bach),None,"[191, 195]",66,2,1,0,0,"Missed time signature multiple times, watch counting",5
+2021-12-03,Run,500,Prelude 3 (Bach),None,"[191, 195]",102,3,1,1,0,"Current key signature was difficult, practice this scale more",5
+2021-12-03,Run,383,Prelude 3 (Bach),None,"[191, 195]",48,2,1,0,0,"This new section was difficult, map beforehand",5
+2021-12-03,Activity,1230,Prelude 3 (Bach),Refrain from giving up,"[[191, 195], [191, 195], [191, 195]]","[66, 102, 48]",7,3,1,0,"Do not freak out, you will get this eventually",5
+2021-12-03,Run,347,Prelude 3 (Bach),None,"[148, 224]",102,4,1,1,1,This section felt good,5
+2021-12-03,Run,457,Prelude 3 (Bach),None,"[148, 224]",67,6,2,2,1,"Finally made progress, keep tempo up next time",5
+2021-12-03,Run,513,Prelude 3 (Bach),None,"[83, 202]",133,9,2,4,2,"Missed time signature multiple times, watch counting",5
+2021-12-03,Run,508,Prelude 3 (Bach),None,"[83, 202]",70,3,0,1,1,"Peaking strain at tempo, work on technique",5
+2021-12-03,Run,413,Prelude 3 (Bach),None,"[83, 202]",77,2,0,1,0,I wish this was easier,5
+2021-12-03,Run,515,Prelude 3 (Bach),None,"[159, 251]",72,6,0,3,2,"Missed time signature multiple times, watch counting",5
+2021-12-03,Run,296,Prelude 3 (Bach),None,"[159, 251]",116,3,1,1,0,This section felt good,5
+2021-12-03,Activity,4279,Prelude 3 (Bach),Increase tone throughout,"[[148, 224], [148, 224], [83, 202], [83, 202], [83, 202], [159, 251], [159, 251]]","[102, 67, 133, 70, 77, 72, 116]",40,9,14,7,"Watch out for the middle section, warm up more beforehand",5
+2021-12-03,Run,543,Prelude 3 (Bach),None,"[103, 226]",46,7,4,2,0,"Ask my director about this part, definitely confusing",5
+2021-12-03,Run,438,Prelude 3 (Bach),None,"[103, 226]",105,3,0,0,2,"Missed time signature multiple times, watch counting",5
+2021-12-03,Activity,5260,Prelude 3 (Bach),Play through peice and map,"[[103, 226], [103, 226]]","[46, 105]",50,13,16,9,"I wish there was more musical markings, go back and add in more phrasings",5
+2021-12-04,Run,349,Prelude 3 (Bach),None,"[57, 135]",64,2,1,0,0,I wish this was easier,6
+2021-12-04,Run,188,Prelude 3 (Bach),None,"[57, 135]",133,4,1,2,0,"This new section was difficult, map beforehand",6
+2021-12-04,Run,493,Prelude 3 (Bach),None,"[57, 135]",65,1,0,0,0,"This new section was difficult, map beforehand",6
+2021-12-04,Activity,1030,Prelude 3 (Bach),Practice performing,"[[57, 135], [57, 135], [57, 135]]","[64, 133, 65]",7,2,2,0,Watch the time signature changes throughout,6
+2021-12-04,Run,228,Astral Dance (Stout),None,"[68, 254]",45,3,1,1,0,"This new section was difficult, map beforehand",6
+2021-12-04,Run,294,Astral Dance (Stout),None,"[68, 254]",85,2,0,1,0,"Pain occurring in left hand, stretch more",6
+2021-12-04,Run,190,Astral Dance (Stout),None,"[68, 254]",56,4,2,1,0,Refrain from getting excited,6
+2021-12-04,Run,548,Astral Dance (Stout),None,"[195, 224]",109,7,1,3,2,"Pain occurring in left hand, stretch more",6
+2021-12-04,Run,427,Astral Dance (Stout),None,"[195, 224]",110,4,2,1,0,"Pain occurring in left hand, stretch more",6
+2021-12-04,Run,581,Astral Dance (Stout),None,"[195, 224]",130,5,2,2,0,"Peaking strain at tempo, work on technique",6
+2021-12-04,Activity,3298,Astral Dance (Stout),Increase tone throughout,"[[68, 254], [68, 254], [68, 254], [195, 224], [195, 224], [195, 224]]","[45, 85, 56, 109, 110, 130]",32,10,11,2,"Lesson instructor said to run this piece more, especially in these tempos",6
+2021-12-04,Run,417,Wilcoxon #52,None,"[0, 157]",40,4,2,1,0,"Missed time signature multiple times, watch counting",6
+2021-12-04,Run,551,Wilcoxon #52,None,"[0, 157]",125,2,0,1,0,"Current key signature was difficult, practice this scale more",6
+2021-12-04,Run,600,Wilcoxon #52,None,"[38, 191]",151,16,3,6,6,"Pain occurring in left hand, stretch more",6
+2021-12-04,Run,527,Wilcoxon #52,None,"[38, 191]",86,3,0,2,0,"Missed time signature multiple times, watch counting",6
+2021-12-04,Activity,5393,Wilcoxon #52,Enjoy and relax,"[[0, 157], [0, 157], [38, 191], [38, 191]]","[40, 125, 151, 86]",57,15,21,8,"Whoops, I forgot to practice",6
+2021-12-05,Run,375,Scales,None,"[233, 292]",110,2,1,0,0,I really should practice more,7
+2021-12-05,Run,555,Scales,None,"[233, 292]",76,1,0,0,0,"This new section was difficult, map beforehand",7
+2021-12-05,Run,449,Scales,None,"[233, 292]",72,1,0,0,0,This section felt good,7
+2021-12-05,Run,378,Scales,None,"[161, 237]",136,1,0,0,0,"Missed time signature multiple times, watch counting",7
+2021-12-05,Run,401,Scales,None,"[161, 237]",155,6,2,2,1,"Pain occurring in left hand, stretch more",7
+2021-12-05,Run,194,Scales,None,"[161, 237]",145,2,0,0,1,Refrain from getting excited,7
+2021-12-05,Activity,2352,Scales,Refine technique,"[[233, 292], [233, 292], [233, 292], [161, 237], [161, 237], [161, 237]]","[110, 76, 72, 136, 155, 145]",13,3,2,2,This piece felt good overall,7
+2021-12-05,Run,424,Wilcoxon #52,None,"[118, 219]",108,9,1,3,4,"This new section was difficult, map beforehand",7
+2021-12-05,Run,298,Wilcoxon #52,None,"[118, 219]",91,3,1,0,1,Refrain from getting excited,7
+2021-12-05,Run,206,Wilcoxon #52,None,"[64, 66]",110,2,0,0,1,"This new section was difficult, map beforehand",7
+2021-12-05,Run,300,Wilcoxon #52,None,"[64, 66]",138,4,1,1,1,"Missed time signature multiple times, watch counting",7
+2021-12-05,Activity,3580,Wilcoxon #52,Have fun,"[[118, 219], [118, 219], [64, 66], [64, 66]]","[108, 91, 110, 138]",31,6,6,9,Watch the time signature changes throughout,7
+2021-12-05,Run,374,Scales,None,"[164, 246]",158,4,1,2,0,I really should practice more,7
+2021-12-05,Run,219,Scales,None,"[164, 246]",48,5,3,1,0,"Finally made progress, keep tempo up next time",7
+2021-12-05,Activity,4173,Scales,Refine technique,"[[164, 246], [164, 246]]","[158, 48]",40,10,9,9,Watch the time signature changes throughout,7
+2021-12-05,Run,253,Scales,None,"[114, 196]",68,2,0,0,1,"Finally made progress, keep tempo up next time",7
+2021-12-05,Run,229,Scales,None,"[114, 196]",110,12,2,3,6,"This new section was difficult, map beforehand",7
+2021-12-05,Activity,4655,Scales,Play through peice and map,"[[114, 196], [114, 196]]","[68, 110]",54,12,12,16,"These techniques are difficult, go back and count through entire piece",7
+2021-12-06,Run,1.44,Strive (Trevino),None,"[90, 100]",110,0,0,0,0,1,8
+2021-12-06,Activity,78.14,Strive (Trevino),These are goals that will appear for the entire activity,"[[90, 100]]",[110],0,0,0,0,Reflecting,8
+2021-12-06,Run,17.12,Warming up,None,"[90, 110]",90,6,4,1,1,These are thoughts about this specific run,8
+2021-12-06,Activity,82.34,Warming up,These are goals that will remind the user what they should accomplish,"[[90, 110]]","[90]",6,4,1,1,These are reflections about all of the practicing on this piece this time,8
