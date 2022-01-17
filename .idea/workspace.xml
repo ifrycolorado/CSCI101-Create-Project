@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7ff7626-698b-4c5d-9143-0fccc7ee5a53" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CSCI101-Create-Project-Music-Practice-Tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/CSCI101-Create-Project-Music-Practice-Tracking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Isaac.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Isaac.csv" afterDir="false" />
-    </list>
+    <list default="true" id="e7ff7626-698b-4c5d-9143-0fccc7ee5a53" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,6 +174,7 @@
       <workItem from="1638655028771" duration="25950000" />
       <workItem from="1638814377455" duration="19402000" />
       <workItem from="1638910371469" duration="4327000" />
+      <workItem from="1640551511419" duration="39000" />
     </task>
     <servers />
   </component>
