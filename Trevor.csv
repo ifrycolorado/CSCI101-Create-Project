@@ -1,5 +1,0 @@
-Date,Type,Time,Piece,Goals,Sections,Tempos,AttemptsTotal,SuccessfulAttempts,UnsuccessfulAttempts,NeutralAttempts,Reflection,Session
-2021-12-05,Run,26.6,Breaking Issac's Program,None,"[-2, -1]",100000000000000000003,3,2,0,1,huh,0
-2021-12-05,Run,44.15,Breaking Issac's Program,None,"[-2, -1]",2,14,4,10,0,neat,0
-2021-12-05,Run,2.28,Breaking Issac's Program,None,"[0, 100]",120,4,4,0,0,2,0
-2021-12-05,Activity,325.47,Breaking Issac's Program,Syntax Error,"[[-2, -1], [-2, -1], [0, 100]]","[100000000000000000003, 2, 120]",21,10,10,1,"akjshfijsdfhaohfohsdfjakhsdflkajdshf;;;;;;;;;;;;;;;;,,,,,,,,",0
