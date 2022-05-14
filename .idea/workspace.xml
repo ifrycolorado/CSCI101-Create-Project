@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7ff7626-698b-4c5d-9143-0fccc7ee5a53" name="Changes" comment="" />
+    <list default="true" id="e7ff7626-698b-4c5d-9143-0fccc7ee5a53" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/CSCI101-Create-Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/CSCI101-Create-Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,6 +39,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Python.CSCI101-Create-Project-Music-Practice-Tracking">
     <configuration name="CSCI101-Create-Project-Music-Practice-Tracking" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -175,6 +180,7 @@
       <workItem from="1638814377455" duration="19402000" />
       <workItem from="1638910371469" duration="4327000" />
       <workItem from="1640551511419" duration="39000" />
+      <workItem from="1650383769960" duration="453000" />
     </task>
     <servers />
   </component>
@@ -197,6 +203,7 @@
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Activity_and_Run_Input.coverage" NAME="Activity and Run Input Coverage Results" MODIFIED="1638858955301" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$CSV_Reading_Backwards.coverage" NAME="CSV Reading Backwards Coverage Results" MODIFIED="1638291400668" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$CSCI101_Create_Project_Music_Practice_Tracking.coverage" NAME="CSCI101-Create-Project-Music-Practice-Tracking Coverage Results" MODIFIED="1638927788143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/CSCI101_Create_Project_Music_Practice_Tracking_py$CSCI101_Create_Project_Music_Practice_Tracking.coverage" NAME="CSCI101-Create-Project-Music-Practice-Tracking Coverage Results" MODIFIED="1650383984611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Data_Retrieval.coverage" NAME="Data Retrieval Coverage Results" MODIFIED="1638765417999" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Example_creation.coverage" NAME="Example creation Coverage Results" MODIFIED="1638826712725" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/CSCI101_Create_Project$Tetsting_CSV_error.coverage" NAME="Tetsting CSV error Coverage Results" MODIFIED="1638556025024" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
